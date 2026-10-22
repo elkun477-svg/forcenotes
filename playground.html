@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ForceNotes — Try it yourself: free HTML, CSS and JavaScript playground</title>
+<meta name="description" content="Write and run HTML, CSS and JavaScript in your browser and see the result instantly. A free "Try it yourself" playground with Salesforce-flavoured examples.">
+<link rel="canonical" href="https://elkun477-svg.github.io/forcenotes/playground.html">
+<meta property="og:title" content="ForceNotes — Try it yourself playground">
+<meta property="og:description" content="Write and run HTML, CSS and JavaScript in your browser and see the result instantly. A free "Try it yourself" playground with Salesforce-flavoured examples.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://elkun477-svg.github.io/forcenotes/playground.html">
+<meta property="og:image" content="https://elkun477-svg.github.io/forcenotes/og-image.png">
+<meta property="og:site_name" content="ForceNotes">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ForceNotes — Try it yourself playground">
+<meta name="twitter:description" content="Write and run HTML, CSS and JavaScript in your browser and see the result instantly. A free "Try it yourself" playground with Salesforce-flavoured examples.">
+<meta name="twitter:image" content="https://elkun477-svg.github.io/forcenotes/og-image.png">
+<meta name="theme-color" content="#0B0E14">
+<script>try{if(localStorage.getItem("fn-theme")==="light"){document.documentElement.setAttribute("data-theme","light");}}catch(e){}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <a class="brand" href="index.html" aria-label="ForceNotes home">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2.5" y="4.5" width="27" height="23" rx="6" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/>
+        <circle cx="7.2" cy="9.2" r="1.15" fill="var(--coral)"/><circle cx="10.6" cy="9.2" r="1.15" fill="var(--gold)"/><circle cx="14" cy="9.2" r="1.15" fill="var(--accent)"/>
+        <path d="M8 15.2L11.6 18.4L8 21.6" stroke="var(--accent)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.2 13.6L16.6 19.2H20.8L18.2 24.4" stroke="var(--violet)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">Force<span class="brand-accent">Notes</span><span class="brand-cursor" aria-hidden="true">_</span></span>
+    </a>
+    <nav class="links" aria-label="Main">
+      <div class="nav-group">
+        <button class="nav-trigger" type="button" aria-expanded="false">Learn<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="index.html#pillars"><strong>Core pillars</strong><span>Six topics, admin to architect</span></a>
+          <a href="index.html#roadmap"><strong>Study roadmap</strong><span>Three stages, in order</span></a>
+          <a href="index.html#data-model"><strong>Data model</strong><span>How records connect</span></a>
+          <a href="design-patterns.html"><strong>Design patterns</strong><span>Apex patterns and SOLID, runnable</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-trigger" type="button" aria-expanded="false">Practice<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="interview-questions.html"><strong>Interview questions</strong><span>260+ Q&amp;As by level, flashcards</span></a>
+          <a href="playground.html"><strong>Try it yourself</strong><span>Run HTML, CSS and JS in your browser</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-trigger" type="button" aria-expanded="false">Read<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="index.html#articles"><strong>Study notes</strong><span>Short worked explanations</span></a>
+          <a href="trending-archive.html"><strong>Trending</strong><span>What's new in the ecosystem</span></a>
+          <a href="index.html#subscribe"><strong>Subscribe</strong><span>One note a week</span></a>
+        </div>
+      </div>
+    </nav>
+    <div class="nav-actions">
+      <button class="search-toggle" id="searchToggle" aria-label="Open search">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="5.2" stroke="currentColor" stroke-width="1.4"/><line x1="12" y1="12" x2="16" y2="16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </button>
+      <button class="search-toggle theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="3.4" stroke="currentColor" stroke-width="1.4"/><path d="M9 1.8V3.4M9 14.6V16.2M1.8 9H3.4M14.6 9H16.2M3.9 3.9L5 5M13 13L14.1 14.1M3.9 14.1L5 13M13 5L14.1 3.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M14.5 11.2A6 6 0 0 1 6.8 3.5A6 6 0 1 0 14.5 11.2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      </button>
+      <a class="btn btn-primary nav-cta" href="index.html#pillars">Start learning</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4.5H16M2 9H16M2 13.5H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div id="mobile-menu">
+      <span class="mobile-group">Learn</span>
+      <a href="index.html#pillars">Core pillars</a>
+      <a href="index.html#roadmap">Study roadmap</a>
+      <a href="index.html#data-model">Data model</a>
+      <a href="design-patterns.html">Design patterns</a>
+      <span class="mobile-group">Practice</span>
+      <a href="interview-questions.html">Interview questions</a>
+      <a href="playground.html">Try it yourself</a>
+      <span class="mobile-group">Read</span>
+      <a href="index.html#articles">Study notes</a>
+      <a href="trending-archive.html">Trending</a>
+      <a href="index.html#subscribe">Subscribe</a>
+    </div>
+  </div>
+</header>
+<div class="search-overlay" id="searchOverlay" hidden>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search ForceNotes..." aria-label="Search"/>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="breadcrumb"><a href="index.html">ForceNotes</a> <span class="crumb-sep">&rsaquo;</span> Try it yourself</div>
+
+  <section class="topic-hero">
+    <span class="eyebrow">Playground &middot; HTML, CSS, JavaScript &amp; Apex</span>
+    <h1>Try it yourself</h1>
+    <p class="lede">Write code on the left, press <strong>Run</strong>, and see the result on the right. Switch to <strong>Apex</strong> to compile and run Apex classes in your browser, with Apex-style compile errors. Pick an example, change anything, and break things on purpose, nothing here can hurt your org. Tip: press <code>Ctrl</code> + <code>Enter</code> to run.</p>
+  </section>
+
+  <div class="pg-toolbar">
+    <div class="pg-lang" role="group" aria-label="Language">
+      <button type="button" class="pg-lang-btn active" data-lang="web" aria-pressed="true">HTML / CSS / JS</button>
+      <button type="button" class="pg-lang-btn" data-lang="apex" aria-pressed="false">Apex</button>
+    </div>
+    <button class="btn btn-primary pg-run" id="pgRun" type="button">Run &#9654;</button>
+    <label class="pg-select-label" for="pgTemplate">Example</label>
+    <select id="pgTemplate" class="pg-select"></select>
+    <button class="btn btn-ghost" id="pgReset" type="button">Reset</button>
+    <button class="btn btn-ghost" id="pgSave" type="button">Save</button>
+    <button class="btn btn-ghost" id="pgShare" type="button">Copy share link</button>
+    <button class="btn btn-ghost pg-hide-sm" id="pgFull" type="button">Wide preview</button>
+    <span class="pg-status" id="pgStatus" role="status" aria-live="polite"></span>
+  </div>
+
+  <div class="pg-layout" id="pgLayout">
+    <div class="pg-pane pg-editor">
+      <div class="pg-pane-title">Your code</div>
+      <textarea id="pgCode" spellcheck="false" aria-label="Code editor"></textarea>
+    </div>
+    <div class="pg-pane pg-result">
+      <div class="pg-pane-title" id="pgResultTitle">Result</div>
+      <div id="pgWeb">
+        <iframe id="pgFrame" title="Result preview" sandbox="allow-scripts allow-modals allow-forms"></iframe>
+        <div class="pg-console-head"><span>Console</span><button type="button" id="pgClearConsole" class="pg-link-btn">Clear</button></div>
+        <div class="pg-console empty" id="pgConsole" aria-live="polite"></div>
+      </div>
+      <div id="pgApex" hidden>
+        <div class="ap-status" id="apStatus" role="status">Press Run to compile and run your Apex.</div>
+        <div class="ap-out" id="apOut" aria-live="polite"></div>
+        <p class="ap-note">Apex Lab is a simulator that runs in your browser: no Salesforce org is involved, so SObjects, SOQL, DML and other org metadata aren&rsquo;t available. Sets and Maps keep insertion order here, which Salesforce does not guarantee.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose" style="max-width:760px;margin-top:32px;">
+    <div class="mascot-tip"><img class="mascot mascot-xs" src="null-bug.svg" alt="" aria-hidden="true"/><p><strong>Null's tip:</strong> break things on purpose. Delete a closing tag or misspell a CSS property and watch what happens. That's how bugs like me are found.</p></div>
+    <h2 id="about-playground">How this works</h2>
+    <ul>
+      <li>Everything runs inside your browser. Nothing you type is sent anywhere.</li>
+      <li><strong>Save</strong> keeps your code in this browser. <strong>Copy share link</strong> packs your code into a link you can send to a friend.</li>
+      <li><code>console.log()</code> output shows up in the Console under the preview.</li>
+      <li><strong>HTML / CSS / JS</strong> runs in a sandboxed preview. These are the web languages Lightning Web Components are built from.</li>
+      <li><strong>Apex</strong> runs on <em>Apex Lab</em>, a small Apex compiler and interpreter written for this site. It checks your code the way Salesforce would (unknown variables, missing methods, wrong types, missing returns, classes that don't implement an interface) and then runs it, showing <code>System.debug</code> output and uncaught exceptions with line numbers. It covers the language itself: classes, interfaces, inheritance, enums, <code>switch</code>, collections, exceptions, properties, inner classes and iterators.</li>
+      <li>Apex Lab has <strong>no org</strong>, so anything that needs metadata is rejected with a clear message: SObjects like <code>Account</code>, SOQL/SOSL, DML, triggers, <code>Test</code> and <code>Database</code>. For those, use a free <a href="https://trailhead.salesforce.com/promo/orgs/trailhead-playground" target="_blank" rel="noopener">Trailhead Playground</a> and the Developer Console. Salesforce&rsquo;s own compiler is always the final judge.</li>
+    </ul>
+  </div>
+
+  <nav class="pillar-nav">
+    <a href="index.html">&larr; Back to ForceNotes</a>
+    <a class="next" href="interview-questions.html">Related: Interview questions &rarr;</a>
+  </nav>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="brand">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="2.5" y="4.5" width="27" height="23" rx="6" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/>
+          <circle cx="7.2" cy="9.2" r="1.15" fill="var(--coral)"/><circle cx="10.6" cy="9.2" r="1.15" fill="var(--gold)"/><circle cx="14" cy="9.2" r="1.15" fill="var(--accent)"/>
+          <path d="M8 15.2L11.6 18.4L8 21.6" stroke="var(--accent)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20.2 13.6L16.6 19.2H20.8L18.2 24.4" stroke="var(--violet)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+          <span class="brand-name">Force<span class="brand-accent">Notes</span><span class="brand-cursor" aria-hidden="true">_</span></span>
+        </div>
+        <p>An independently owned and written study blog covering Salesforce platform fundamentals. Not affiliated with, endorsed by, or sponsored by Salesforce.com.</p>
+        <div class="foot-author">
+          <span class="author-name">Sayed Muneer Mohsin</span>
+          <span class="author-title">Founder &middot; Salesforce Enthusiast</span>
+          <div class="author-links">
+            <a href="https://www.salesforce.com/trailblazer/msayedmuneer" target="_blank" rel="noopener">Trailblazer</a>
+            <a href="https://www.linkedin.com/in/sayed-mohsin-7923a09b/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Study</h4>
+        <a href="index.html#pillars">Core pillars</a>
+        <a href="index.html#data-model">Data model</a>
+        <a href="index.html#roadmap">Roadmap</a>
+      </div>
+      <div class="foot-col">
+        <h4>Read</h4>
+        <a href="index.html#articles">Latest notes</a>
+        <a href="interview-questions.html">Interview prep</a>
+        <a href="playground.html">Try it yourself</a>
+        <a href="trending-archive.html">All trending</a>
+        <a href="index.html#subscribe">Subscribe</a>
+      </div>
+      <div class="foot-col">
+        <h4>Tracks</h4>
+        <a href="platform-crm-basics.html">Administrator</a>
+        <a href="automation.html">App Builder</a>
+        <a href="apex-development.html">Developer</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 ForceNotes. Independently written and maintained.</span>
+      <span>"Salesforce" is a trademark of Salesforce, Inc.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="site-config.js"></script>
+<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+<script src="playground.js"></script>
+<script src="apex-templates.js"></script>
+<script src="playground-app.js"></script>
+</body>
+</html>

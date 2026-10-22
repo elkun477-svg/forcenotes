@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Null, the ForceNotes bug mascot">
+  <title>Null, the ForceNotes bug</title>
+  <text x="150" y="52" font-family="Courier New, monospace" font-size="30" font-weight="700" fill="#F5C451">?</text><text x="36" y="66" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#F5C451">?</text>
+  <g stroke="#6E7A8C" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M62 118L36 108L24 116"/><path d="M60 138L32 140L22 152"/><path d="M66 158L44 172L40 184"/>
+    <path d="M138 118L164 108L176 116"/><path d="M140 138L168 140L178 152"/><path d="M134 158L156 172L160 184"/>
+  </g>
+  <ellipse cx="100" cy="142" rx="46" ry="44" fill="#8B7CFF"/>
+  <path d="M100 100V184" stroke="#6A5AE0" stroke-width="3"/>
+  <ellipse cx="100" cy="142" rx="46" ry="44" fill="none" stroke="#6A5AE0" stroke-width="3"/>
+  <text x="75" y="152" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#1E1B3D">{</text>
+  <text x="114" y="152" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#1E1B3D">}</text>
+  <circle cx="83" cy="168" r="4" fill="#B3A9FF"/><circle cx="118" cy="128" r="5" fill="#B3A9FF"/>
+  <g stroke="#6E7A8C" stroke-width="3.5" stroke-linecap="round" fill="none"><path d="M88 38Q80 18 66 14"/><path d="M112 38Q120 18 134 14"/></g>
+  <circle cx="65" cy="14" r="6" fill="#22D3B6"/><circle cx="135" cy="14" r="6" fill="#22D3B6"/>
+  <circle cx="100" cy="68" r="38" fill="#22D3B6"/>
+  <circle cx="100" cy="68" r="38" fill="none" stroke="#0A8F7A" stroke-width="3"/>
+  <path d="M76 53L90 48M124 53L110 48" stroke="#04130F" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="85" cy="64" rx="10" ry="11" fill="#FFFFFF"/><ellipse cx="115" cy="64" rx="10" ry="11" fill="#FFFFFF"/>
+  <circle cx="83" cy="66" r="5.5" fill="#0B0E14"/><circle cx="113" cy="66" r="5.5" fill="#0B0E14"/>
+  <circle cx="85" cy="63.5" r="1.8" fill="#FFFFFF"/><circle cx="115" cy="63.5" r="1.8" fill="#FFFFFF"/>
+  <ellipse cx="72" cy="80" rx="6" ry="3.5" fill="#FF9A8F" opacity=".85"/><ellipse cx="128" cy="80" rx="6" ry="3.5" fill="#FF9A8F" opacity=".85"/>
+  <path d="M89 84Q95 79 101 84Q107 89 112 83" stroke="#04130F" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

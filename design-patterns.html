@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ForceNotes — Apex design patterns and SOLID principles</title>
+<meta name="description" content="Plain-English guide to SOLID and the design patterns Salesforce developers use (Singleton, Factory, Builder, Strategy, Observer, Trigger handler, Unit of Work) with runnable Apex examples.">
+<link rel="canonical" href="https://elkun477-svg.github.io/forcenotes/design-patterns.html">
+<meta property="og:title" content="ForceNotes — Apex design patterns and SOLID principles">
+<meta property="og:description" content="Plain-English guide to SOLID and the design patterns Salesforce developers use (Singleton, Factory, Builder, Strategy, Observer, Trigger handler, Unit of Work) with runnable Apex examples.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://elkun477-svg.github.io/forcenotes/design-patterns.html">
+<meta property="og:image" content="https://elkun477-svg.github.io/forcenotes/og-image.png">
+<meta property="og:site_name" content="ForceNotes">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ForceNotes — Apex design patterns and SOLID principles">
+<meta name="twitter:description" content="Plain-English guide to SOLID and the design patterns Salesforce developers use (Singleton, Factory, Builder, Strategy, Observer, Trigger handler, Unit of Work) with runnable Apex examples.">
+<meta name="twitter:image" content="https://elkun477-svg.github.io/forcenotes/og-image.png">
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "TechArticle", "headline": "Apex design patterns and SOLID principles", "description": "Plain-English guide to SOLID and the design patterns Salesforce developers use (Singleton, Factory, Builder, Strategy, Observer, Trigger handler, Unit of Work) with runnable Apex examples.", "author": { "@type": "Person", "name": "Sayed Muneer Mohsin" }, "publisher": { "@type": "Organization", "name": "ForceNotes" }, "mainEntityOfPage": "https://elkun477-svg.github.io/forcenotes/design-patterns.html" }
+</script>
+<meta name="theme-color" content="#0B0E14">
+<script>try{if(localStorage.getItem("fn-theme")==="light"){document.documentElement.setAttribute("data-theme","light");}}catch(e){}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <a class="brand" href="index.html" aria-label="ForceNotes home">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2.5" y="4.5" width="27" height="23" rx="6" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/>
+        <circle cx="7.2" cy="9.2" r="1.15" fill="var(--coral)"/><circle cx="10.6" cy="9.2" r="1.15" fill="var(--gold)"/><circle cx="14" cy="9.2" r="1.15" fill="var(--accent)"/>
+        <path d="M8 15.2L11.6 18.4L8 21.6" stroke="var(--accent)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.2 13.6L16.6 19.2H20.8L18.2 24.4" stroke="var(--violet)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">Force<span class="brand-accent">Notes</span><span class="brand-cursor" aria-hidden="true">_</span></span>
+    </a>
+    <nav class="links" aria-label="Main">
+      <div class="nav-group">
+        <button class="nav-trigger" type="button" aria-expanded="false">Learn<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="index.html#pillars"><strong>Core pillars</strong><span>Six topics, admin to architect</span></a>
+          <a href="index.html#roadmap"><strong>Study roadmap</strong><span>Three stages, in order</span></a>
+          <a href="index.html#data-model"><strong>Data model</strong><span>How records connect</span></a>
+          <a href="design-patterns.html"><strong>Design patterns</strong><span>Apex patterns and SOLID, runnable</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-trigger" type="button" aria-expanded="false">Practice<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="interview-questions.html"><strong>Interview questions</strong><span>260+ Q&amp;As by level, flashcards</span></a>
+          <a href="playground.html"><strong>Try it yourself</strong><span>Run HTML, CSS and JS in your browser</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-trigger" type="button" aria-expanded="false">Read<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="index.html#articles"><strong>Study notes</strong><span>Short worked explanations</span></a>
+          <a href="trending-archive.html"><strong>Trending</strong><span>What's new in the ecosystem</span></a>
+          <a href="index.html#subscribe"><strong>Subscribe</strong><span>One note a week</span></a>
+        </div>
+      </div>
+    </nav>
+    <div class="nav-actions">
+      <button class="search-toggle" id="searchToggle" aria-label="Open search">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="5.2" stroke="currentColor" stroke-width="1.4"/><line x1="12" y1="12" x2="16" y2="16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </button>
+      <button class="search-toggle theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="3.4" stroke="currentColor" stroke-width="1.4"/><path d="M9 1.8V3.4M9 14.6V16.2M1.8 9H3.4M14.6 9H16.2M3.9 3.9L5 5M13 13L14.1 14.1M3.9 14.1L5 13M13 5L14.1 3.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M14.5 11.2A6 6 0 0 1 6.8 3.5A6 6 0 1 0 14.5 11.2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      </button>
+      <a class="btn btn-primary nav-cta" href="index.html#pillars">Start learning</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4.5H16M2 9H16M2 13.5H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div id="mobile-menu">
+      <span class="mobile-group">Learn</span>
+      <a href="index.html#pillars">Core pillars</a>
+      <a href="index.html#roadmap">Study roadmap</a>
+      <a href="index.html#data-model">Data model</a>
+      <a href="design-patterns.html">Design patterns</a>
+      <span class="mobile-group">Practice</span>
+      <a href="interview-questions.html">Interview questions</a>
+      <a href="playground.html">Try it yourself</a>
+      <span class="mobile-group">Read</span>
+      <a href="index.html#articles">Study notes</a>
+      <a href="trending-archive.html">Trending</a>
+      <a href="index.html#subscribe">Subscribe</a>
+    </div>
+  </div>
+</header>
+<div class="search-overlay" id="searchOverlay" hidden>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search ForceNotes..." aria-label="Search"/>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<div class="reading-progress"><div class="reading-progress-fill" id="readingProgressFill"></div></div>
+<div class="wrap">
+
+  <div class="breadcrumb"><a href="index.html">ForceNotes</a> <span class="crumb-sep">&rsaquo;</span> <a href="apex-development.html">Apex &amp; development</a> <span class="crumb-sep">&rsaquo;</span> Design patterns</div>
+
+  <section class="topic-hero">
+    <span class="eyebrow">Deep dive &middot; Developer &amp; architect</span>
+    <h1>Apex design patterns and SOLID principles</h1>
+    <p class="lede">Write Apex that survives bulk data, new teammates and next year&rsquo;s requirements. SOLID, ten classic patterns and the Salesforce enterprise layers, each with code you can run and break in the browser.</p>
+  </section>
+
+  <img class="topic-hero-img" src="design-patterns-cover.svg" alt="A code window showing an Apex interface with several classes implementing it"/>
+
+  <div class="topic-grid">
+    <div class="prose">
+
+<h2 id="why"><svg class="h-icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M5 13.5A3 3 0 0 1 4.7 7.6A4.3 4.3 0 0 1 13 6.8A3.4 3.4 0 0 1 13.2 13.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Why patterns matter on Salesforce</h2>
+<p>Design patterns are named, proven shapes for solving problems that keep coming back. On Salesforce they earn their keep for three reasons: <strong>governor limits</strong> punish messy code at scale, <strong>many teams edit the same org</strong> so predictable structure matters, and <strong>tests</strong> are mandatory, which is hard when classes create their own dependencies.</p>
+<p>Every example below is plain Apex that you can run in the browser. Press <em>Run it in the playground</em> to open the code in the <a href="playground.html?lang=apex">Apex playground</a>, change it, and break it on purpose. Examples that need an org (SOQL, DML, triggers) are shown separately and labelled.</p>
+<div class="callout"><strong>Learn by editing.</strong> Run a pattern once, then change one thing: add a new strategy, rename a method, remove an <code>override</code>. The compiler messages teach as much as the pattern does.</div>
+
+<h2 id="solid"><svg class="h-icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 15V8L9 3L15 8V15 M7 15V10H11V15" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg>SOLID principles</h2>
+<p>SOLID is five guidelines for classes that are easy to change and easy to test. They are guidelines, not laws: use them when a class starts to hurt.</p>
+<article class="pattern" id="srp">
+  <div class="pattern-head"><h3>S: Single Responsibility</h3><span class="pattern-tag p">Principle</span></div>
+  <p class="pattern-one">A class should have one job, and therefore one reason to change.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>A class mixes different concerns: calculating, formatting, saving, emailing. Changing one breaks another.</dd></div>
+    <div><dt>In Salesforce</dt><dd>The classic smell is a trigger or a 900-line <code>AccountService</code> that validates, queries, calls out and sends emails. Keep triggers thin and push each concern into its own class.</dd></div>
+    <div><dt>Watch out</dt><dd>Do not split into dozens of tiny classes just to look tidy. Split when two things change for different reasons.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>// BAD: one class that calculates, formats AND sends. Three reasons to change.
+public class InvoiceEverything {
+    public String process(Decimal net) {
+        Decimal total = net * 1.2;
+        String text = 'Invoice total: ' + total;
+        return 'Sent -&gt; ' + text;
+    }
+}
+
+// GOOD: each class has one job and one reason to change.
+public class InvoiceCalculator {
+    public Decimal total(Decimal net) { return net * 1.2; }
+}
+public class InvoiceFormatter {
+    public String format(Decimal total) { return 'Invoice total: ' + total; }
+}
+public class InvoiceSender {
+    public String send(String body) { return 'Sent -&gt; ' + body; }
+}
+
+public class InvoiceService {
+    private InvoiceCalculator calc = new InvoiceCalculator();
+    private InvoiceFormatter formatter = new InvoiceFormatter();
+    private InvoiceSender sender = new InvoiceSender();
+    public String process(Decimal net) {
+        return sender.send(formatter.format(calc.total(net)));
+    }
+}
+
+System.debug(new InvoiceEverything().process(100));
+System.debug(new InvoiceService().process(100));</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-solid-srp">Run it in the playground &#8599;</a></div>
+</article>
+<article class="pattern" id="ocp">
+  <div class="pattern-head"><h3>O: Open/Closed</h3><span class="pattern-tag p">Principle</span></div>
+  <p class="pattern-one">Code should be open for extension but closed for modification: add behaviour by adding a class, not by editing a long <code>if / else</code>.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>Every new region, product type or rule means reopening the same method.</dd></div>
+    <div><dt>In Salesforce</dt><dd>Pair it with Custom Metadata: a record names the class to use, and <code>Type.forName()</code> loads it. Admins and new developers add rules without touching tested code.</dd></div>
+    <div><dt>Watch out</dt><dd>Two options do not need an interface. Wait until the third variation shows up.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>// BAD: every new shipping method means editing this method (and risking old ones).
+public class ShippingBad {
+    public Decimal cost(String method, Decimal kg) {
+        if (method == 'standard') { return kg * 2; }
+        else if (method == 'express') { return kg * 5 + 10; }
+        return 0;
+    }
+}
+
+// GOOD: new behaviour is a new class. Existing code stays untouched.
+public interface ShippingRate { Decimal cost(Decimal kg); }
+public class StandardRate implements ShippingRate { public Decimal cost(Decimal kg) { return kg * 2; } }
+public class ExpressRate implements ShippingRate { public Decimal cost(Decimal kg) { return kg * 5 + 10; } }
+// Added later without touching anything above:
+public class DroneRate implements ShippingRate { public Decimal cost(Decimal kg) { return kg * 9 + 25; } }
+
+public class ShippingCalculator {
+    public Decimal quote(ShippingRate rate, Decimal kg) { return rate.cost(kg); }
+}
+
+ShippingCalculator calc = new ShippingCalculator();
+System.debug('Standard 3kg: ' + calc.quote(new StandardRate(), 3));
+System.debug('Express  3kg: ' + calc.quote(new ExpressRate(), 3));
+System.debug('Drone    3kg: ' + calc.quote(new DroneRate(), 3));</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-solid-ocp">Run it in the playground &#8599;</a></div>
+</article>
+<article class="pattern" id="lsp">
+  <div class="pattern-head"><h3>L: Liskov Substitution</h3><span class="pattern-tag p">Principle</span></div>
+  <p class="pattern-one">Anywhere you use a parent class, any subclass must work without surprises.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>A subclass throws "not supported", returns nonsense, or quietly ignores what the parent promises.</dd></div>
+    <div><dt>In Salesforce</dt><dd>Common with <code>virtual</code> base classes for trigger handlers or batch jobs: a subclass that overrides a method and skips required work (like logging or validation) breaks every caller.</dd></div>
+    <div><dt>Watch out</dt><dd>If you override a method just to throw an exception, the inheritance is wrong. Use an interface for the capability instead.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>// BAD: a Penguin IS-A Bird, but it cannot fly, so code that trusts Bird.fly() breaks.
+public virtual class Bird {
+    public virtual String fly() { return 'flapping into the sky'; }
+}
+public class Penguin extends Bird {
+    public override String fly() { throw new UnsupportedOperationException('Penguins cannot fly'); }
+}
+
+List&lt;Bird&gt; birds = new List&lt;Bird&gt;{ new Bird(), new Penguin() };
+for (Bird b : birds) {
+    try {
+        System.debug(b.fly());
+    } catch (UnsupportedOperationException e) {
+        System.debug('LSP violation: ' + e.getMessage());
+    }
+}
+
+// GOOD: only birds that really fly promise to fly.
+public interface Flyer { String fly(); }
+public virtual class Animal { public virtual String move() { return 'moving'; } }
+public class Sparrow extends Animal implements Flyer {
+    public String fly() { return 'sparrow flaps'; }
+}
+public class Penguin2 extends Animal {
+    public override String move() { return 'penguin waddles'; }
+}
+
+List&lt;Flyer&gt; flyers = new List&lt;Flyer&gt;{ new Sparrow() };
+for (Flyer f : flyers) { System.debug(f.fly()); }
+System.debug(new Penguin2().move());</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-solid-lsp">Run it in the playground &#8599;</a></div>
+</article>
+<article class="pattern" id="isp">
+  <div class="pattern-head"><h3>I: Interface Segregation</h3><span class="pattern-tag p">Principle</span></div>
+  <p class="pattern-one">Prefer several small interfaces over one big one, so classes only implement what they use.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>Implementers have empty methods or methods that throw because the interface asks for too much.</dd></div>
+    <div><dt>In Salesforce</dt><dd>Salesforce does this itself: <code>Database.Batchable</code>, <code>Schedulable</code> and <code>Queueable</code> are separate small interfaces, so a class opts in to exactly the behaviour it needs.</dd></div>
+    <div><dt>Watch out</dt><dd>Do not make an interface per method. Group methods that are always used together.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>// BAD: one fat interface forces classes to implement things they do not need.
+public interface WorkerBad {
+    void work();
+    void eat();
+    void code();
+}
+
+// GOOD: small, focused interfaces. Implement only what you use.
+public interface Workable { String work(); }
+public interface Codable { String code(); }
+public interface Feedable { String eat(); }
+
+public class Developer implements Workable, Codable, Feedable {
+    public String work() { return 'developer plans'; }
+    public String code() { return 'developer writes Apex'; }
+    public String eat() { return 'developer eats lunch'; }
+}
+public class Robot implements Workable {
+    public String work() { return 'robot assembles parts'; }
+    // no eat(), no code(): nothing to fake
+}
+
+List&lt;Workable&gt; staff = new List&lt;Workable&gt;{ new Developer(), new Robot() };
+for (Workable w : staff) { System.debug(w.work()); }
+
+Object o = staff.get(0);
+if (o instanceof Codable) { System.debug(((Codable) o).code()); }</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-solid-isp">Run it in the playground &#8599;</a></div>
+</article>
+<article class="pattern" id="dip">
+  <div class="pattern-head"><h3>D: Dependency Inversion</h3><span class="pattern-tag p">Principle</span></div>
+  <p class="pattern-one">High-level code should depend on abstractions, and the concrete pieces should be passed in.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>You cannot unit test a class because it creates its own payment client, callout or selector with <code>new</code>.</dd></div>
+    <div><dt>In Salesforce</dt><dd>This is how you get fast tests. <code>HttpCalloutMock</code> and the <code>System.StubProvider</code> API exist for exactly this: swap the real dependency for a fake one.</dd></div>
+    <div><dt>Watch out</dt><dd>Injecting everything everywhere adds noise. Inject the things that talk to the outside world.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>// High level code depends on an abstraction, not on a concrete class.
+public interface PaymentGateway {
+    Boolean charge(Decimal amount);
+}
+public class CardGateway implements PaymentGateway {
+    public Boolean charge(Decimal amount) { System.debug('Charging card ' + amount); return true; }
+}
+// A test double: lets us test OrderProcessor without a real payment system
+public class FakeGateway implements PaymentGateway {
+    public List&lt;Decimal&gt; charges = new List&lt;Decimal&gt;();
+    public Boolean charge(Decimal amount) { charges.add(amount); return amount &lt; 1000; }
+}
+
+public class OrderProcessor {
+    private PaymentGateway gateway;
+    // The dependency is injected, not created with "new" inside
+    public OrderProcessor(PaymentGateway gateway) { this.gateway = gateway; }
+    public String checkout(Decimal total) {
+        return gateway.charge(total) ? 'PAID' : 'DECLINED';
+    }
+}
+
+System.debug(new OrderProcessor(new CardGateway()).checkout(80));
+
+// "Unit test" with the fake
+FakeGateway fake = new FakeGateway();
+OrderProcessor op = new OrderProcessor(fake);
+Assert.areEqual('PAID', op.checkout(250));
+Assert.areEqual('DECLINED', op.checkout(5000));
+Assert.areEqual(2, fake.charges.size());
+System.debug('All assertions passed');</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-solid-dip">Run it in the playground &#8599;</a></div>
+</article>
+
+<h2 id="creational"><svg class="h-icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M9 6V12 M6 9H12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Creational patterns</h2>
+<p>These patterns control how objects get made.</p>
+<article class="pattern" id="singleton">
+  <div class="pattern-head"><h3>Singleton</h3><span class="pattern-tag c">Creational</span></div>
+  <p class="pattern-one">Make sure only one instance of a class exists, and give everyone the same one.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>Expensive set-up that should happen once, such as reading configuration or Custom Metadata.</dd></div>
+    <div><dt>In Salesforce</dt><dd>In Apex, static variables live for <strong>one transaction</strong> only. So a Singleton is a per-transaction cache: perfect for avoiding the same query ten times in one save, but it is never shared between users or requests.</dd></div>
+    <div><dt>Watch out</dt><dd>Do not treat it as global storage between transactions. Use Platform Cache for that. Singletons also make tests harder, so expose a way to reset or replace them.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>public class AppConfig {
+    private static AppConfig instance;
+    private Map&lt;String, String&gt; settings = new Map&lt;String, String&gt;();
+
+    // Private constructor: nobody else can call "new AppConfig()"
+    private AppConfig() {
+        // Imagine this being loaded once from Custom Metadata
+        settings.put('region', 'EMEA');
+        settings.put('maxRetries', '3');
+        System.debug('AppConfig created (this prints only once)');
+    }
+
+    public static AppConfig getInstance() {
+        if (instance == null) {
+            instance = new AppConfig();
+        }
+        return instance;
+    }
+
+    public String get(String key) { return settings.get(key); }
+}
+
+System.debug(AppConfig.getInstance().get('region'));
+System.debug(AppConfig.getInstance().get('maxRetries'));
+System.debug('Same object? ' + (AppConfig.getInstance() == AppConfig.getInstance()));</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-singleton">Run it in the playground &#8599;</a></div>
+</article>
+<article class="pattern" id="factory">
+  <div class="pattern-head"><h3>Factory</h3><span class="pattern-tag c">Creational</span></div>
+  <p class="pattern-one">Ask a factory for what you need. It decides which class to create.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>The caller should not know which concrete class to use, or the choice depends on data.</dd></div>
+    <div><dt>In Salesforce</dt><dd>Great with Custom Metadata: a record says <em>Channel = SMS, Class = SmsNotifier</em> and the factory uses <code>Type.forName(className).newInstance()</code>. Adding a channel needs no code change in the factory.</dd></div>
+    <div><dt>Watch out</dt><dd>A factory with a giant switch just moves the <code>if / else</code> problem. Prefer metadata-driven lookups once you have more than a few types.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>public interface Notifier {
+    String send(String to, String message);
+}
+public class EmailNotifier implements Notifier {
+    public String send(String to, String message) { return 'EMAIL to ' + to + ': ' + message; }
+}
+public class SmsNotifier implements Notifier {
+    public String send(String to, String message) { return 'SMS to ' + to + ': ' + message; }
+}
+public class UnknownChannelException extends Exception {}
+
+public class NotifierFactory {
+    public static Notifier create(String channel) {
+        switch on channel.toLowerCase() {
+            when 'email' { return new EmailNotifier(); }
+            when 'sms' { return new SmsNotifier(); }
+            when else { throw new UnknownChannelException('No notifier for: ' + channel); }
+        }
+    }
+}
+
+// The caller never says "new EmailNotifier()". It only asks for a channel.
+System.debug(NotifierFactory.create('email').send('sam@example.com', 'Your case was updated'));
+System.debug(NotifierFactory.create('SMS').send('+15550100', 'Code: 4821'));
+try {
+    NotifierFactory.create('pigeon');
+} catch (UnknownChannelException e) {
+    System.debug('Error: ' + e.getMessage());
+}</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-factory">Run it in the playground &#8599;</a></div>
+</article>
+<article class="pattern" id="builder">
+  <div class="pattern-head"><h3>Builder</h3><span class="pattern-tag c">Creational</span></div>
+  <p class="pattern-one">Build a complex object step by step, with readable method names, then call <code>build()</code>.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>A constructor would need six parameters, or an object has many optional settings.</dd></div>
+    <div><dt>In Salesforce</dt><dd>Callout request bodies, report definitions, and above all <strong>test data builders</strong>: <code>new ContactBuilder().withLastName('Lee').build()</code> keeps tests short and clear.</dd></div>
+    <div><dt>Watch out</dt><dd>Validate inside <code>build()</code> so you never hand back a half-made object.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>public class ReportRequest {
+    public String title;
+    public String owner;
+    public Integer maxRows;
+    public Boolean includeCharts;
+
+    public class RequestException extends Exception {}
+
+    public class Builder {
+        private ReportRequest r = new ReportRequest();
+
+        public Builder withTitle(String title) { r.title = title; return this; }
+        public Builder withOwner(String owner) { r.owner = owner; return this; }
+        public Builder limitedTo(Integer rows) { r.maxRows = rows; return this; }
+        public Builder withCharts() { r.includeCharts = true; return this; }
+
+        public ReportRequest build() {
+            if (String.isBlank(r.title)) {
+                throw new RequestException('A title is required');
+            }
+            if (r.maxRows == null) { r.maxRows = 100; }   // sensible default
+            if (r.includeCharts == null) { r.includeCharts = false; }
+            return r;
+        }
+    }
+}
+
+ReportRequest req = new ReportRequest.Builder()
+    .withTitle('Q4 pipeline')
+    .withOwner('Sam')
+    .withCharts()
+    .build();
+System.debug(req.title + ' / ' + req.owner + ' / rows=' + req.maxRows + ' / charts=' + req.includeCharts);
+
+try {
+    new ReportRequest.Builder().withOwner('Sam').build();
+} catch (ReportRequest.RequestException e) {
+    System.debug('Rejected: ' + e.getMessage());
+}</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-builder">Run it in the playground &#8599;</a></div>
+</article>
+
+<h2 id="structural"><svg class="h-icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="2" y="2" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="10" y="10" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.4"/><path d="M8 5H12V10" stroke="currentColor" stroke-width="1.4"/></svg>Structural patterns</h2>
+<p>These patterns control how objects fit together.</p>
+<article class="pattern" id="decorator">
+  <div class="pattern-head"><h3>Decorator</h3><span class="pattern-tag s">Structural</span></div>
+  <p class="pattern-one">Wrap an object to add behaviour without changing its class.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>You want optional extras (logging, retries, caching, tax, shipping) that can be combined.</dd></div>
+    <div><dt>In Salesforce</dt><dd>Wrap a callout service with a <em>LoggingDecorator</em> and a <em>RetryDecorator</em>. The rest of the code still just calls <code>send()</code>.</dd></div>
+    <div><dt>Watch out</dt><dd>Too many layers make stack traces hard to read. Keep each decorator small and named for what it adds.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>public interface PriceCalculator {
+    Decimal price();
+}
+public class BasePrice implements PriceCalculator {
+    private Decimal base;
+    public BasePrice(Decimal base) { this.base = base; }
+    public Decimal price() { return base; }
+}
+// A decorator wraps another calculator and adds behaviour.
+public virtual class PriceDecorator implements PriceCalculator {
+    protected PriceCalculator inner;
+    public PriceDecorator(PriceCalculator inner) { this.inner = inner; }
+    public virtual Decimal price() { return inner.price(); }
+}
+public class TaxDecorator extends PriceDecorator {
+    public TaxDecorator(PriceCalculator inner) { super(inner); }
+    public override Decimal price() { return (inner.price() * 1.2).setScale(2); }
+}
+public class ShippingDecorator extends PriceDecorator {
+    public ShippingDecorator(PriceCalculator inner) { super(inner); }
+    public override Decimal price() { return inner.price() + 5; }
+}
+
+PriceCalculator plain = new BasePrice(100);
+PriceCalculator withTax = new TaxDecorator(plain);
+PriceCalculator everything = new ShippingDecorator(new TaxDecorator(new BasePrice(100)));
+System.debug('Plain: ' + plain.price());
+System.debug('With tax: ' + withTax.price());
+System.debug('Tax then shipping: ' + everything.price());</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-decorator">Run it in the playground &#8599;</a></div>
+</article>
+<article class="pattern" id="facade">
+  <div class="pattern-head"><h3>Facade</h3><span class="pattern-tag s">Structural</span></div>
+  <p class="pattern-one">Give a simple front door to a messy group of classes.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>Callers must remember to call three services in the right order.</dd></div>
+    <div><dt>In Salesforce</dt><dd>An <code>OrderService.placeOrder()</code> that coordinates inventory, payment and shipping. Flows, LWCs and REST endpoints all call the same method.</dd></div>
+    <div><dt>Watch out</dt><dd>A facade should coordinate, not hold business rules, or it turns into a god class.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>public class InventoryService {
+    public Boolean reserve(String sku, Integer qty) { System.debug('inventory: reserved ' + qty + ' x ' + sku); return qty &lt;= 10; }
+}
+public class PaymentService {
+    public String charge(String customer, Decimal amount) { System.debug('payment: charged ' + customer + ' ' + amount); return 'PAY-1'; }
+}
+public class ShippingService {
+    public String schedule(String customer) { System.debug('shipping: booked for ' + customer); return 'SHIP-1'; }
+}
+
+// One simple door in front of three subsystems
+public class OrderFacade {
+    private InventoryService inventory = new InventoryService();
+    private PaymentService payments = new PaymentService();
+    private ShippingService shipping = new ShippingService();
+
+    public String placeOrder(String customer, String sku, Integer qty, Decimal total) {
+        if (!inventory.reserve(sku, qty)) { return 'FAILED: out of stock'; }
+        String payId = payments.charge(customer, total);
+        String shipId = shipping.schedule(customer);
+        return 'OK ' + payId + ' ' + shipId;
+    }
+}
+
+System.debug(new OrderFacade().placeOrder('Acme', 'SKU-9', 2, 49.90));
+System.debug(new OrderFacade().placeOrder('Acme', 'SKU-9', 50, 999));</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-facade">Run it in the playground &#8599;</a></div>
+</article>
+
+<h2 id="behavioral"><svg class="h-icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L11 5M15 9L11 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Behavioral patterns</h2>
+<p>These patterns control how objects talk to each other.</p>
+<article class="pattern" id="strategy">
+  <div class="pattern-head"><h3>Strategy</h3><span class="pattern-tag b">Behavioral</span></div>
+  <p class="pattern-one">Put each way of doing something behind the same interface and pick one at run time.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>Pricing, discounts, lead routing or scoring that varies by customer, region or product.</dd></div>
+    <div><dt>In Salesforce</dt><dd>Territory or routing logic, discount rules per tier, and even <code>Comparator</code> classes for sorting are all Strategy.</dd></div>
+    <div><dt>Watch out</dt><dd>If the strategies share most of their code, a Template Method may fit better.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>public interface DiscountStrategy {
+    Decimal apply(Decimal price);
+}
+public class NoDiscount implements DiscountStrategy {
+    public Decimal apply(Decimal price) { return price; }
+}
+public class PercentOff implements DiscountStrategy {
+    private Decimal percent;
+    public PercentOff(Decimal percent) { this.percent = percent; }
+    public Decimal apply(Decimal price) { return price - (price * percent / 100); }
+}
+public class FlatOff implements DiscountStrategy {
+    private Decimal amount;
+    public FlatOff(Decimal amount) { this.amount = amount; }
+    public Decimal apply(Decimal price) { return Math.max(0, price - amount); }
+}
+
+public class Checkout {
+    private DiscountStrategy strategy;
+    public Checkout(DiscountStrategy strategy) { this.strategy = strategy; }
+    public Decimal total(List&lt;Decimal&gt; prices) {
+        Decimal sum = 0;
+        for (Decimal p : prices) { sum += strategy.apply(p); }
+        return sum;
+    }
+}
+
+List&lt;Decimal&gt; cart = new List&lt;Decimal&gt;{ 100, 250, 50 };
+System.debug('No discount: ' + new Checkout(new NoDiscount()).total(cart));
+System.debug('20% off:     ' + new Checkout(new PercentOff(20)).total(cart));
+System.debug('Flat 10 off: ' + new Checkout(new FlatOff(10)).total(cart));</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-strategy">Run it in the playground &#8599;</a></div>
+</article>
+<article class="pattern" id="observer">
+  <div class="pattern-head"><h3>Observer</h3><span class="pattern-tag b">Behavioral</span></div>
+  <p class="pattern-one">Publish an event, and let any number of listeners react without the publisher knowing them.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>One action (an order ships) should trigger several independent reactions (audit, alert, sync).</dd></div>
+    <div><dt>In Salesforce</dt><dd>Inside one transaction, use listener interfaces like this. Across transactions and systems, the platform version is <strong>Platform Events</strong> and Change Data Capture.</dd></div>
+    <div><dt>Watch out</dt><dd>In-memory listeners run in the same transaction and share its limits. Heavy work belongs in async Apex or a Platform Event subscriber.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>public interface Listener {
+    void onEvent(String name, String payload);
+}
+
+public class EventBus {
+    private Map&lt;String, List&lt;Listener&gt;&gt; listeners = new Map&lt;String, List&lt;Listener&gt;&gt;();
+
+    public void subscribe(String eventName, Listener l) {
+        if (!listeners.containsKey(eventName)) {
+            listeners.put(eventName, new List&lt;Listener&gt;());
+        }
+        listeners.get(eventName).add(l);
+    }
+    public Integer publish(String eventName, String payload) {
+        if (!listeners.containsKey(eventName)) { return 0; }
+        for (Listener l : listeners.get(eventName)) { l.onEvent(eventName, payload); }
+        return listeners.get(eventName).size();
+    }
+}
+
+public class AuditLog implements Listener {
+    public void onEvent(String name, String payload) { System.debug('[audit] ' + name + ': ' + payload); }
+}
+public class SlackAlert implements Listener {
+    public void onEvent(String name, String payload) { System.debug('[slack] heads up: ' + payload); }
+}
+
+EventBus bus = new EventBus();
+bus.subscribe('OrderShipped', new AuditLog());
+bus.subscribe('OrderShipped', new SlackAlert());
+bus.subscribe('OrderCancelled', new AuditLog());
+
+System.debug('Notified: ' + bus.publish('OrderShipped', 'Order 1001'));
+System.debug('Notified: ' + bus.publish('OrderCancelled', 'Order 1002'));
+System.debug('Notified: ' + bus.publish('Nobody', 'ignored'));</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-observer">Run it in the playground &#8599;</a></div>
+</article>
+<article class="pattern" id="template-method">
+  <div class="pattern-head"><h3>Template Method</h3><span class="pattern-tag b">Behavioral</span></div>
+  <p class="pattern-one">Fix the order of steps in a base class and let subclasses fill in the details.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>Several classes follow the same recipe (validate, transform, save) with different details.</dd></div>
+    <div><dt>In Salesforce</dt><dd><code>Database.Batchable</code> is itself a template: <em>start, execute, finish</em>. A shared base batch class can add logging and error handling once for every job.</dd></div>
+    <div><dt>Watch out</dt><dd>Deep inheritance trees become fragile. Keep one level of subclasses where you can.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>public abstract class DataImporter {
+    // The template: the order of steps is fixed here
+    public void run(List&lt;String&gt; rows) {
+        List&lt;String&gt; clean = validate(rows);
+        List&lt;String&gt; shaped = transform(clean);
+        save(shaped);
+        System.debug('Imported ' + shaped.size() + ' of ' + rows.size() + ' rows');
+    }
+    // Subclasses fill in the steps that differ
+    protected abstract List&lt;String&gt; transform(List&lt;String&gt; rows);
+    protected abstract void save(List&lt;String&gt; rows);
+
+    // A default step that subclasses may override
+    protected virtual List&lt;String&gt; validate(List&lt;String&gt; rows) {
+        List&lt;String&gt; ok = new List&lt;String&gt;();
+        for (String r : rows) { if (String.isNotBlank(r)) { ok.add(r); } }
+        return ok;
+    }
+}
+
+public class ContactImporter extends DataImporter {
+    protected override List&lt;String&gt; transform(List&lt;String&gt; rows) {
+        List&lt;String&gt; out = new List&lt;String&gt;();
+        for (String r : rows) { out.add(r.trim().toLowerCase()); }
+        return out;
+    }
+    protected override void save(List&lt;String&gt; rows) { System.debug('Saving contacts: ' + rows); }
+}
+
+new ContactImporter().run(new List&lt;String&gt;{ ' SAM@EXAMPLE.COM ', '', 'Pat@Example.com' });</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-template-method">Run it in the playground &#8599;</a></div>
+</article>
+<article class="pattern" id="iterator">
+  <div class="pattern-head"><h3>Iterator</h3><span class="pattern-tag b">Behavioral</span></div>
+  <p class="pattern-one">Walk through a collection one item at a time, without exposing how it is stored.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>You need to loop over something that is not a plain List, such as paged API results.</dd></div>
+    <div><dt>In Salesforce</dt><dd>Batch Apex lets <code>start()</code> return an <code>Iterable</code>, so a batch can process data that did not come from SOQL.</dd></div>
+    <div><dt>Watch out</dt><dd>Keep state inside the iterator, and remember that each transaction creates a new one.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>public class Countdown implements Iterable&lt;Integer&gt;, Iterator&lt;Integer&gt; {
+    private Integer current;
+    public Countdown(Integer from) { current = from; }
+
+    public Iterator&lt;Integer&gt; iterator() { return this; }
+    public Boolean hasNext() { return current &gt; 0; }
+    public Integer next() {
+        Integer value = current;
+        current--;
+        return value;
+    }
+}
+
+// Any Iterable works in a for loop, even your own class.
+for (Integer n : new Countdown(5)) {
+    System.debug(n);
+}</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-iterator">Run it in the playground &#8599;</a></div>
+</article>
+
+<h2 id="enterprise"><svg class="h-icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M5 13.5A3 3 0 0 1 4.7 7.6A4.3 4.3 0 0 1 13 6.8A3.4 3.4 0 0 1 13.2 13.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Salesforce enterprise patterns</h2>
+<p>Large orgs layer their code. The open-source <a href="https://github.com/apex-enterprise-patterns/fflib-apex-common" target="_blank" rel="noopener">fflib Apex Common</a> library popularised <em>Selector</em>, <em>Domain</em>, <em>Service</em> and <em>Unit of Work</em> layers. These two work without an org:</p>
+<article class="pattern" id="trigger-handler">
+  <div class="pattern-head"><h3>Trigger handler</h3><span class="pattern-tag sf">Salesforce</span></div>
+  <p class="pattern-one">One trigger per object that does nothing but hand over to a handler class.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>Always, for Apex triggers. It gives you a predictable order and testable logic.</dd></div>
+    <div><dt>In Salesforce</dt><dd>The trigger calls <code>new AccountTriggerHandler().run()</code>, and the handler routes to <code>beforeInsert</code>, <code>afterUpdate</code> and so on, with a recursion guard and a bypass switch (Custom Permission or Custom Metadata) for data loads.</dd></div>
+    <div><dt>Watch out</dt><dd>The simulated example passes a list in by hand. In a real org the records come from <code>Trigger.new</code> and <code>Trigger.oldMap</code>.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>// The real thing runs inside a trigger with Trigger.new. Here we pass a list in by hand.
+public class Customer {
+    public String name; public String tier;
+    public Customer(String name, String tier) { this.name = name; this.tier = tier; }
+    public override String toString() { return name + '(' + tier + ')'; }
+}
+
+public virtual class TriggerHandler {
+    private static Set&lt;String&gt; bypassed = new Set&lt;String&gt;();
+    public static void bypass(String handlerName) { bypassed.add(handlerName); }
+    public static void clearBypass(String handlerName) { bypassed.remove(handlerName); }
+
+    public void run(String context, List&lt;Customer&gt; records) {
+        String me = getName();
+        if (bypassed.contains(me)) { System.debug(me + ' is bypassed'); return; }
+        switch on context {
+            when 'before insert' { beforeInsert(records); }
+            when 'after insert' { afterInsert(records); }
+            when else { System.debug('No logic for ' + context); }
+        }
+    }
+    protected virtual String getName() { return 'TriggerHandler'; }
+    protected virtual void beforeInsert(List&lt;Customer&gt; records) {}
+    protected virtual void afterInsert(List&lt;Customer&gt; records) {}
+}
+
+public class CustomerHandler extends TriggerHandler {
+    protected override String getName() { return 'CustomerHandler'; }
+    protected override void beforeInsert(List&lt;Customer&gt; records) {
+        for (Customer c : records) { if (c.tier == null) { c.tier = 'Standard'; } }
+    }
+    protected override void afterInsert(List&lt;Customer&gt; records) {
+        System.debug('Welcome emails queued for ' + records.size() + ' customers');
+    }
+}
+
+List&lt;Customer&gt; batch = new List&lt;Customer&gt;{ new Customer('Acme', null), new Customer('Globex', 'Gold') };
+CustomerHandler h = new CustomerHandler();
+h.run('before insert', batch);
+System.debug(batch);
+h.run('after insert', batch);
+TriggerHandler.bypass('CustomerHandler');
+h.run('after insert', batch);</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-trigger-handler">Run it in the playground &#8599;</a></div>
+</article>
+<article class="pattern" id="unit-of-work">
+  <div class="pattern-head"><h3>Unit of Work</h3><span class="pattern-tag sf">Salesforce</span></div>
+  <p class="pattern-one">Collect every change you want to make, then save them together once.</p>
+  <dl class="pattern-facts">
+    <div><dt>Use it when</dt><dd>Business logic creates and changes many records and you need to stay inside DML limits.</dd></div>
+    <div><dt>In Salesforce</dt><dd>The open-source fflib library has <code>fflib_SObjectUnitOfWork</code>: <code>registerNew</code>, <code>registerDirty</code>, <code>commitWork</code>. It orders DML by relationship and rolls everything back if one step fails.</dd></div>
+    <div><dt>Watch out</dt><dd>Commit once, at the edge of the transaction. A commit hidden deep inside a helper brings the problem back.</dd></div>
+  </dl>
+  <pre class="apex-code"><code>// Collect changes first, then "save" them together in one go.
+// In real Apex the commit step would be a single insert and update call.
+public class UnitOfWork {
+    private List&lt;String&gt; newRecords = new List&lt;String&gt;();
+    private List&lt;String&gt; changedRecords = new List&lt;String&gt;();
+    private Integer commits = 0;
+
+    public void registerNew(String r) { newRecords.add(r); }
+    public void registerDirty(String r) { changedRecords.add(r); }
+
+    public void commitWork() {
+        System.debug('Committing ' + newRecords.size() + ' new and ' + changedRecords.size() + ' changed records in ONE transaction');
+        commits++;
+        newRecords.clear();
+        changedRecords.clear();
+    }
+    public Integer getCommits() { return commits; }
+}
+
+UnitOfWork uow = new UnitOfWork();
+for (Integer i = 1; i &lt;= 5; i++) { uow.registerNew('Order-' + i); }
+uow.registerDirty('Account-Acme');
+uow.registerDirty('Account-Globex');
+// Nothing is saved until we say so, so the limits are only hit once.
+uow.commitWork();
+System.debug('Total commits: ' + uow.getCommits());</code></pre>
+  <div class="pattern-actions"><a class="btn btn-ghost pattern-run" href="playground.html?t=apex-unit-of-work">Run it in the playground &#8599;</a></div>
+</article>
+
+<h3 class="layers-title">The layers, with real org code</h3>
+<p>A common layering: the <strong>trigger or controller</strong> calls a <strong>service</strong> (business logic), which uses <strong>selectors</strong> (all SOQL) and a <strong>unit of work</strong> (all DML). Because it needs an org, this code is for reading rather than running here. Try it in a <a href="https://trailhead.salesforce.com/promo/orgs/trailhead-playground" target="_blank" rel="noopener">Trailhead Playground</a>.</p>
+<pre class="apex-code org-only"><code>// Selector: all SOQL for an object lives in one class (needs an org)
+public inherited sharing class AccountSelector {
+    public List&lt;Account&gt; byIds(Set&lt;Id&gt; ids) {
+        return [SELECT Id, Name, Industry FROM Account WHERE Id IN :ids WITH USER_MODE];
+    }
+}
+
+// Service: business logic that uses selectors and a unit of work (needs an org)
+public with sharing class AccountService {
+    public static void tagLargeAccounts(Set&lt;Id&gt; ids) {
+        List&lt;Account&gt; toUpdate = new List&lt;Account&gt;();
+        for (Account a : new AccountSelector().byIds(ids)) {
+            if (a.NumberOfEmployees != null &amp;&amp; a.NumberOfEmployees &gt; 1000) {
+                toUpdate.add(new Account(Id = a.Id, Rating = 'Hot'));
+            }
+        }
+        update as user toUpdate;
+    }
+}
+
+// The trigger itself stays one line (needs an org)
+trigger AccountTrigger on Account (before insert, before update, after update) {
+    new AccountTriggerHandler().run();
+}</code></pre>
+
+<h2 id="anti-patterns"><svg class="h-icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 2L16 15H2L9 2Z M9 7V10.5 M9 12.5V12.6" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg>Smells to watch for</h2>
+<div class="cheat-wrap"><table class="cheat-table">
+<thead><tr><th>Smell</th><th>Why it hurts</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><th scope="row">SOQL or DML inside a loop</th><td>Hits governor limits at 200 records.</td><td>Collect Ids, query once, use Maps. See <a href="apex-development.html#apex-triggers">bulkification</a>.</td></tr>
+<tr><th scope="row">Logic inside the trigger body</th><td>Cannot be tested or reused. Several triggers fight each other.</td><td><a href="#trigger-handler">Trigger handler</a>, one trigger per object.</td></tr>
+<tr><th scope="row">Hard-coded Ids, usernames, URLs</th><td>Breaks after a sandbox refresh.</td><td>Custom Metadata, Named Credentials, queries by name.</td></tr>
+<tr><th scope="row">A &ldquo;god class&rdquo; with everything</th><td>Every change is risky.</td><td><a href="#srp">Single Responsibility</a>, a service layer.</td></tr>
+<tr><th scope="row">Giant <code>if / else if</code> on a type string</th><td>Every new type edits old code.</td><td><a href="#ocp">Open/Closed</a>, <a href="#strategy">Strategy</a>, <a href="#factory">Factory</a>.</td></tr>
+<tr><th scope="row">Singletons holding state across users</th><td>Static state is per transaction, so it will not behave as expected.</td><td>Platform Cache or a Custom Setting.</td></tr>
+<tr><th scope="row">Patterns everywhere, for everything</th><td>Extra classes with no benefit.</td><td>Add a pattern when you feel the pain, not before.</td></tr>
+</tbody></table></div>
+
+<h2 id="picker"><svg class="h-icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M6 5H15 M6 9H15 M6 13H15 M3 5H3.1 M3 9H3.1 M3 13H3.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Which pattern do I need?</h2>
+<div class="cheat-wrap"><table class="cheat-table">
+<thead><tr><th>I need to&hellip;</th><th>Reach for</th></tr></thead>
+<tbody>
+<tr><th scope="row">Load config once per transaction</th><td><a href="#singleton">Singleton</a></td></tr>
+<tr><th scope="row">Pick a class from data or a setting</th><td><a href="#factory">Factory</a> + Custom Metadata</td></tr>
+<tr><th scope="row">Make complex objects or test data readable</th><td><a href="#builder">Builder</a></td></tr>
+<tr><th scope="row">Swap algorithms (pricing, routing)</th><td><a href="#strategy">Strategy</a></td></tr>
+<tr><th scope="row">Add logging or retries around a callout</th><td><a href="#decorator">Decorator</a></td></tr>
+<tr><th scope="row">Hide several services behind one call</th><td><a href="#facade">Facade</a></td></tr>
+<tr><th scope="row">Let many things react to one event</th><td><a href="#observer">Observer</a> or Platform Events</td></tr>
+<tr><th scope="row">Share a recipe across batch jobs</th><td><a href="#template-method">Template Method</a></td></tr>
+<tr><th scope="row">Organise trigger logic</th><td><a href="#trigger-handler">Trigger handler</a></td></tr>
+<tr><th scope="row">Stay inside DML limits when saving many records</th><td><a href="#unit-of-work">Unit of Work</a></td></tr>
+<tr><th scope="row">Test code that calls the outside world</th><td><a href="#dip">Dependency Inversion</a>, <code>HttpCalloutMock</code></td></tr>
+</tbody></table></div>
+
+<h2 id="practice"><svg class="h-icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L11 5M15 9L11 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Practise it</h2>
+<ul>
+<li>Open the <a href="playground.html?lang=apex">Apex playground</a> and run every example above.</li>
+<li>Test yourself with the <a href="interview-questions.html?q=pattern">design pattern interview questions</a> and flip through them as flashcards.</li>
+<li>Read about <a href="apex-development.html#governor-limits">governor limits</a> and <a href="architecture-integration.html">architecture</a> to see why these patterns exist.</li>
+</ul>
+
+    </div>
+
+    <aside class="quick-ref">
+      <nav class="toc-card" aria-label="On this page">
+        <h4>On this page</h4>
+        <a href="#why">Why patterns matter</a>
+        <a href="#solid">SOLID principles</a>
+        <a href="#creational">Creational</a>
+        <a href="#structural">Structural</a>
+        <a href="#behavioral">Behavioral</a>
+        <a href="#enterprise">Salesforce enterprise</a>
+        <a href="#anti-patterns">Smells to watch for</a>
+        <a href="#picker">Which pattern?</a>
+        <a href="#practice">Practise it</a>
+      </nav>
+      <div class="record-card">
+        <div class="record-body">
+          <h4>Run the examples</h4>
+          <p style="font-size:13.5px;color:var(--ink-soft);margin:0 0 10px;">All 21 Apex examples are in the playground under <em>Apex basics</em>, <em>Design patterns</em> and <em>SOLID</em>.</p>
+          <a class="btn btn-primary" href="playground.html?lang=apex">Open the Apex playground</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="article-byline record-card" style="max-width:none;">
+    <div class="record-body">
+      <div class="record-field"><span class="field-label">Written by</span><span class="val">Sayed Muneer Mohsin</span></div>
+    </div>
+  </div>
+
+  <nav class="pillar-nav">
+    <a href="apex-development.html">&larr; Apex &amp; development</a>
+    <a class="next" href="architecture-integration.html">Next: Architecture &amp; integration &rarr;</a>
+  </nav>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="brand">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="2.5" y="4.5" width="27" height="23" rx="6" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/>
+          <circle cx="7.2" cy="9.2" r="1.15" fill="var(--coral)"/><circle cx="10.6" cy="9.2" r="1.15" fill="var(--gold)"/><circle cx="14" cy="9.2" r="1.15" fill="var(--accent)"/>
+          <path d="M8 15.2L11.6 18.4L8 21.6" stroke="var(--accent)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20.2 13.6L16.6 19.2H20.8L18.2 24.4" stroke="var(--violet)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+          <span class="brand-name">Force<span class="brand-accent">Notes</span><span class="brand-cursor" aria-hidden="true">_</span></span>
+        </div>
+        <p>An independently owned and written study blog covering Salesforce platform fundamentals. Not affiliated with, endorsed by, or sponsored by Salesforce.com.</p>
+        <div class="foot-author">
+          <span class="author-name">Sayed Muneer Mohsin</span>
+          <span class="author-title">Founder &middot; Salesforce Enthusiast</span>
+          <div class="author-links">
+            <a href="https://www.salesforce.com/trailblazer/msayedmuneer" target="_blank" rel="noopener">Trailblazer</a>
+            <a href="https://www.linkedin.com/in/sayed-mohsin-7923a09b/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Study</h4>
+        <a href="index.html#pillars">Core pillars</a>
+        <a href="index.html#data-model">Data model</a>
+        <a href="index.html#roadmap">Roadmap</a>
+      </div>
+      <div class="foot-col">
+        <h4>Read</h4>
+        <a href="index.html#articles">Latest notes</a>
+        <a href="interview-questions.html">Interview prep</a>
+        <a href="playground.html">Try it yourself</a>
+        <a href="trending-archive.html">All trending</a>
+        <a href="index.html#subscribe">Subscribe</a>
+      </div>
+      <div class="foot-col">
+        <h4>Tracks</h4>
+        <a href="platform-crm-basics.html">Administrator</a>
+        <a href="automation.html">App Builder</a>
+        <a href="apex-development.html">Developer</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 ForceNotes. Independently written and maintained.</span>
+      <span>"Salesforce" is a trademark of Salesforce, Inc.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="site-config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ForceNotes</title>
+<meta name="google-site-verification" content="LQj2RKIAndpqfeVwx9bMEwuNhtQGZcN66jjMwbCJ6cw" />
+<meta name="description" content="ForceNotes is an independent study blog covering Salesforce platform fundamentals — Admin, Data Model, Security, Automation, Apex, and Architecture. Free study notes and a guided roadmap for anyone learning Salesforce.">
+<link rel="canonical" href="https://elkun477-svg.github.io/forcenotes/">
+<meta property="og:title" content="ForceNotes">
+<meta property="og:description" content="ForceNotes is an independent study blog covering Salesforce platform fundamentals — Admin, Data Model, Security, Automation, Apex, and Architecture. Free study notes and a guided roadmap for anyone learning Salesforce.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://elkun477-svg.github.io/forcenotes/">
+<meta property="og:image" content="https://elkun477-svg.github.io/forcenotes/og-image.png">
+<meta property="og:site_name" content="ForceNotes">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ForceNotes">
+<meta name="twitter:description" content="ForceNotes is an independent study blog covering Salesforce platform fundamentals — Admin, Data Model, Security, Automation, Apex, and Architecture. Free study notes and a guided roadmap for anyone learning Salesforce.">
+<meta name="twitter:image" content="https://elkun477-svg.github.io/forcenotes/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ForceNotes",
+  "description": "ForceNotes is an independent study blog covering Salesforce platform fundamentals — Admin, Data Model, Security, Automation, Apex, and Architecture. Free study notes and a guided roadmap for anyone learning Salesforce.",
+  "url": "https://elkun477-svg.github.io/forcenotes",
+  "author": {
+    "@type": "Person",
+    "name": "Sayed Muneer Mohsin"
+  }
+}
+</script>
+<meta name="theme-color" content="#0B0E14">
+<script>try{if(localStorage.getItem("fn-theme")==="light"){document.documentElement.setAttribute("data-theme","light");}}catch(e){}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <a class="brand" href="index.html" aria-label="ForceNotes home">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2.5" y="4.5" width="27" height="23" rx="6" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/>
+        <circle cx="7.2" cy="9.2" r="1.15" fill="var(--coral)"/><circle cx="10.6" cy="9.2" r="1.15" fill="var(--gold)"/><circle cx="14" cy="9.2" r="1.15" fill="var(--accent)"/>
+        <path d="M8 15.2L11.6 18.4L8 21.6" stroke="var(--accent)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.2 13.6L16.6 19.2H20.8L18.2 24.4" stroke="var(--violet)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">Force<span class="brand-accent">Notes</span><span class="brand-cursor" aria-hidden="true">_</span></span>
+    </a>
+    <nav class="links" aria-label="Main">
+      <div class="nav-group">
+        <button class="nav-trigger" type="button" aria-expanded="false">Learn<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="index.html#pillars"><strong>Core pillars</strong><span>Six topics, admin to architect</span></a>
+          <a href="index.html#roadmap"><strong>Study roadmap</strong><span>Three stages, in order</span></a>
+          <a href="index.html#data-model"><strong>Data model</strong><span>How records connect</span></a>
+          <a href="design-patterns.html"><strong>Design patterns</strong><span>Apex patterns and SOLID, runnable</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-trigger" type="button" aria-expanded="false">Practice<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="interview-questions.html"><strong>Interview questions</strong><span>260+ Q&amp;As by level, flashcards</span></a>
+          <a href="playground.html"><strong>Try it yourself</strong><span>Run HTML, CSS and JS in your browser</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-trigger" type="button" aria-expanded="false">Read<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="index.html#articles"><strong>Study notes</strong><span>Short worked explanations</span></a>
+          <a href="trending-archive.html"><strong>Trending</strong><span>What's new in the ecosystem</span></a>
+          <a href="index.html#subscribe"><strong>Subscribe</strong><span>One note a week</span></a>
+        </div>
+      </div>
+    </nav>
+    <div class="nav-actions">
+      <button class="search-toggle" id="searchToggle" aria-label="Open search">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="5.2" stroke="currentColor" stroke-width="1.4"/><line x1="12" y1="12" x2="16" y2="16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </button>
+      <button class="search-toggle theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="3.4" stroke="currentColor" stroke-width="1.4"/><path d="M9 1.8V3.4M9 14.6V16.2M1.8 9H3.4M14.6 9H16.2M3.9 3.9L5 5M13 13L14.1 14.1M3.9 14.1L5 13M13 5L14.1 3.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M14.5 11.2A6 6 0 0 1 6.8 3.5A6 6 0 1 0 14.5 11.2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      </button>
+      <a class="btn btn-primary nav-cta" href="index.html#pillars">Start learning</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4.5H16M2 9H16M2 13.5H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div id="mobile-menu">
+      <span class="mobile-group">Learn</span>
+      <a href="index.html#pillars">Core pillars</a>
+      <a href="index.html#roadmap">Study roadmap</a>
+      <a href="index.html#data-model">Data model</a>
+      <a href="design-patterns.html">Design patterns</a>
+      <span class="mobile-group">Practice</span>
+      <a href="interview-questions.html">Interview questions</a>
+      <a href="playground.html">Try it yourself</a>
+      <span class="mobile-group">Read</span>
+      <a href="index.html#articles">Study notes</a>
+      <a href="trending-archive.html">Trending</a>
+      <a href="index.html#subscribe">Subscribe</a>
+    </div>
+  </div>
+</header>
+<div class="search-overlay" id="searchOverlay" hidden>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search ForceNotes..." aria-label="Search"/>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="hero-top">
+      <div>
+        <span class="eyebrow">A study companion for the Salesforce platform</span>
+        <h1>Learn Salesforce <em>object by object</em>, not slide by slide.</h1>
+        <p class="lede">Free, plain-English study notes for the whole platform, from Objects and Fields to Security, Flow, Apex, LWC and Architecture. Then practise with real interview questions and a live code playground.</p>
+        <div class="hero-search" role="search">
+          <label class="hero-search-field">
+            <span class="prompt" aria-hidden="true">&gt;</span>
+            <input type="search" id="heroSearch" placeholder="Search notes and 260+ interview questions" aria-label="Search ForceNotes" autocomplete="off"/>
+            <kbd aria-hidden="true">Ctrl K</kbd>
+          </label>
+          <div class="hero-results" id="heroResults" hidden></div>
+        </div>
+        <div class="quick-topics">
+          <span>try:</span>
+          <a href="interview-questions.html?q=governor">governor limits</a>
+          <a href="automation.html#flow-builder">flow</a>
+          <a href="interview-questions.html?q=lwc">lwc</a>
+          <a href="security-sharing.html">sharing rules</a>
+          <a href="interview-questions.html?q=batch">batch apex</a>
+        </div>
+      </div>
+
+      <div class="terminal" aria-label="Example: querying the Account object">
+        <div class="terminal-bar"><i></i><i></i><i></i><span class="terminal-title">study-session.soql</span></div>
+<pre class="terminal-body"><span class="t-prompt">&gt;</span> <span class="t-kw">SELECT</span> Name, (<span class="t-kw">SELECT</span> Name <span class="t-kw">FROM</span> Contacts)
+  <span class="t-kw">FROM</span> Account <span class="t-kw">LIMIT</span> 1
+<span class="t-ok">&#10003;</span> <span class="t-dim">1 row &middot; 3 child relationships</span>
+
+<span class="t-key">object</span>   Account (standard)
+<span class="t-key">children</span> Contact &middot; Opportunity &middot; Case
+<span class="t-key">access</span>   Org-Wide Defaults + Role Hierarchy
+<span class="t-key">tracks</span>   Admin &middot; App Builder &middot; Developer
+
+<span class="t-prompt">&gt;</span> <span class="t-cursor"></span></pre>
+      </div>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat"><div class="num">6</div><div class="lab">Core pillars, admin to architect</div></div>
+      <div class="stat"><div class="num">260+</div><div class="lab">Interview questions, by level</div></div>
+      <div class="stat"><div class="num">0</div><div class="lab">Sign-ups, paywalls or ads</div></div>
+    </div>
+
+    <div class="start-here">
+      <span class="start-here-label">New here? Start with</span>
+      <a href="platform-crm-basics.html#objects">Objects &amp; Fields</a>
+      <a href="data-model-relationships.html">Data model</a>
+      <a href="#roadmap">Full roadmap →</a>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="pillars">
+    <div class="section-head">
+      <span class="eyebrow">The syllabus</span>
+      <h2>Six pillars cover the whole platform</h2>
+      <p>Every certification path and every real Salesforce org is built from the same underlying concepts. These are the pillars this blog organizes its notes around.</p>
+    </div>
+    <div class="pillars-layout">
+    <div class="pillar-grid">
+
+      <div class="pillar">
+        <div class="icon cat-admin"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="10" y="10" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.4"/></svg></div>
+        <h3>Platform &amp; CRM basics</h3>
+        <p>What a CRM is for, how Salesforce organizes records, and how to navigate Setup without getting lost.</p>
+        <div class="chips">
+          <span class="chip">Standard vs Custom Objects</span>
+          <span class="chip">Fields &amp; Data Types</span>
+          <span class="chip">Lightning Experience</span>
+          <span class="chip">App Builder</span>
+        </div>
+        <a class="go" href="platform-crm-basics.html">Explore notes →</a>
+      </div>
+
+      <div class="pillar">
+        <div class="icon cat-data-model"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="5" cy="5" r="2.2" stroke="currentColor" stroke-width="1.4"/><circle cx="13" cy="5" r="2.2" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="13" r="2.2" stroke="currentColor" stroke-width="1.4"/><path d="M6.6 6.2L11.4 6.2M6.6 6.8L8 11.2M11.4 6.8L10 11.2" stroke="currentColor" stroke-width="1.2"/></svg></div>
+        <h3>Data model &amp; relationships</h3>
+        <p>How records connect to each other, and why the choice between relationship types shapes everything downstream.</p>
+        <div class="chips">
+          <span class="chip">Lookup vs Master-Detail</span>
+          <span class="chip">Schema Builder</span>
+          <span class="chip">Record Types</span>
+          <span class="chip">Page Layouts</span>
+        </div>
+        <a class="go" href="data-model-relationships.html">Explore notes →</a>
+      </div>
+
+      <div class="pillar">
+        <div class="icon cat-security"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L15 4.5V8.5C15 12 12.5 14.7 9 16C5.5 14.7 3 12 3 8.5V4.5L9 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+        <h3>Security &amp; sharing model</h3>
+        <p>Who can see what, and why. The layered model that decides record and field-level visibility across an org.</p>
+        <div class="chips">
+          <span class="chip">Org-Wide Defaults</span>
+          <span class="chip">Role Hierarchy</span>
+          <span class="chip">Profiles &amp; Perm Sets</span>
+          <span class="chip">Sharing Rules</span>
+        </div>
+        <a class="go" href="security-sharing.html">Explore notes →</a>
+      </div>
+
+      <div class="pillar">
+        <div class="icon cat-automation"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9H15M15 9L11 5M15 9L11 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Automation, clicks not code</h3>
+        <p>Building logic declaratively — the tools that let admins encode a business process without writing Apex.</p>
+        <div class="chips">
+          <span class="chip">Flow Builder</span>
+          <span class="chip">Validation Rules</span>
+          <span class="chip">Approval Processes</span>
+          <span class="chip">Automation Limits</span>
+        </div>
+        <a class="go" href="automation.html">Explore notes →</a>
+      </div>
+
+      <div class="pillar">
+        <div class="icon cat-development"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M6 4L2 9L6 14M12 4L16 9L12 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Apex &amp; development</h3>
+        <p>When declarative tools aren't enough — writing and testing code that runs safely inside the platform's limits.</p>
+        <div class="chips">
+          <span class="chip">Apex Triggers</span>
+          <span class="chip">SOQL &amp; SOSL</span>
+          <span class="chip">Governor Limits</span>
+          <span class="chip">Lightning Web Components</span>
+        </div>
+        <a class="go" href="apex-development.html">Explore notes →</a>
+      </div>
+
+      <div class="pillar">
+        <div class="icon cat-architecture"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="7" width="5" height="9" stroke="currentColor" stroke-width="1.4"/><rect x="7.5" y="3" width="5" height="13" stroke="currentColor" stroke-width="1.4"/><rect x="13" y="10" width="5" height="6" stroke="currentColor" stroke-width="1.4" transform="translate(-2 0)"/></svg></div>
+        <h3>Architecture &amp; integration</h3>
+        <p>Connecting Salesforce to the rest of a company's systems, and moving changes through orgs safely.</p>
+        <div class="chips">
+          <span class="chip">REST &amp; SOAP APIs</span>
+          <span class="chip">Data Loader / ETL</span>
+          <span class="chip">Change Sets &amp; CI/CD</span>
+          <span class="chip">Multi-Org Strategy</span>
+        </div>
+        <a class="go" href="architecture-integration.html">Explore notes →</a>
+      </div>
+
+    </div>
+
+    <aside id="trending" class="trending-sidebar">
+      <div class="trending-sidebar-head">
+        <div>
+          <span class="eyebrow">Straight from the ecosystem</span>
+          <h3>What's trending</h3>
+        </div>
+        <a class="trending-viewall" href="trending-archive.html">View all &rarr;</a>
+      </div>
+      <div class="trending-card">
+        <a href="trending-8.html"><span class="trending-arrow">→</span><span>The Winter '27 Security Change That Could Quietly Break Your Integrations</span></a>
+        <a href="trending-7.html"><span class="trending-arrow">→</span><span>Agentforce Voice Learns to Say "Hola" (And Five Other Languages)</span></a>
+        <a href="trending-6.html"><span class="trending-arrow">→</span><span>Salesforce Just Bought an AI That Watches Your Dashboards For You</span></a>
+        <a href="trending-5.html"><span class="trending-arrow">→</span><span>5 Salesforce Certifications Actually Worth Your Time Right Now</span></a>
+        <a href="trending-4.html"><span class="trending-arrow">→</span><span>Admin or Developer? In 2026, the Line Just Got Blurrier</span></a>
+        <div class="trending-footer">
+          <span>Last refreshed: <span id="trendingUpdated">October 20, 2026</span></span>
+          <span>Researched and written by ForceNotes, based on public reporting</span>
+        </div>
+      </div>
+    </aside>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="data-model">
+    <div class="section-head">
+      <span class="eyebrow">Fundamental #1</span>
+      <h2>How records actually connect</h2>
+      <p>Almost every Salesforce concept — sharing, automation, reporting — sits on top of this one shape. An Account is the hub; Contacts, Opportunities, and Cases hang off it as child records.</p>
+    </div>
+    <div class="diagram-shell">
+      <img src="data-model-diagram.png" alt="Diagram showing the Account object as a parent record connected to Contact, Opportunity, and Case child objects, each in a one-to-many relationship, with Opportunity further connected to Opportunity Line Item" loading="lazy"/>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="roadmap">
+    <div class="section-head">
+      <span class="eyebrow">How to use this blog</span>
+      <h2>A three-stage study roadmap</h2>
+      <p>Work through the stages in order if you're starting from zero, or jump to the stage that matches where you're stuck. Each stage points to a certification that validates it.</p>
+    </div>
+    <div class="roadmap">
+
+      <div class="stage">
+        <div class="stage-num">01</div>
+        <div class="stage-body">
+          <h3>Foundations</h3>
+          <p class="stage-sub">Get comfortable inside an org before touching automation or code.</p>
+          <div class="stage-topics">
+            <a href="platform-crm-basics.html#objects">Objects &amp; Fields</a>
+            <a href="platform-crm-basics.html#setup">Navigation &amp; Setup</a>
+            <a href="platform-crm-basics.html#reports-dashboards">Reports &amp; Dashboards</a>
+            <a href="platform-crm-basics.html#data-management">Data Management basics</a>
+          </div>
+          <a class="stage-cert" href="https://trailhead.salesforce.com/credentials/administrator" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 7L9 3.5L16 7L9 10.5L2 7Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5 8.5V12C5 13 6.8 14 9 14C11.2 14 13 13 13 12V8.5" stroke="currentColor" stroke-width="1.2"/></svg>Salesforce Certified Administrator ↗</a>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num">02</div>
+        <div class="stage-body">
+          <h3>Builder</h3>
+          <p class="stage-sub">Encode real business processes and lock down who sees what.</p>
+          <div class="stage-topics">
+            <a href="automation.html#flow-builder">Flow Builder &amp; Automation</a>
+            <a href="security-sharing.html#security-model">Security Model</a>
+            <a href="platform-crm-basics.html#setup">Lightning App Building</a>
+            <a href="architecture-integration.html#change-management">Change Management</a>
+          </div>
+          <a class="stage-cert" href="https://trailhead.salesforce.com/credentials/platformappbuilder" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 7L9 3.5L16 7L9 10.5L2 7Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5 8.5V12C5 13 6.8 14 9 14C11.2 14 13 13 13 12V8.5" stroke="currentColor" stroke-width="1.2"/></svg>Platform App Builder ↗</a>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num">03</div>
+        <div class="stage-body">
+          <h3>Developer &amp; architect</h3>
+          <p class="stage-sub">Write code that respects the platform's limits, and connect Salesforce to everything else.</p>
+          <div class="stage-topics">
+            <a href="apex-development.html#apex-triggers">Apex &amp; Triggers</a>
+            <a href="apex-development.html#lwc">Lightning Web Components</a>
+            <a href="architecture-integration.html#integration-patterns">Integration Patterns</a>
+            <a href="apex-development.html#governor-limits">Governor Limits &amp; Bulkification</a>
+          </div>
+          <a class="stage-cert" href="https://trailhead.salesforce.com/credentials/platformdeveloperi" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 7L9 3.5L16 7L9 10.5L2 7Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5 8.5V12C5 13 6.8 14 9 14C11.2 14 13 13 13 12V8.5" stroke="currentColor" stroke-width="1.2"/></svg>Platform Developer I/II &middot; Architect tracks ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="interview-prep" class="tight">
+    <div class="interview-promo">
+      <div>
+        <span class="eyebrow">Get interview-ready</span>
+        <h2>Real Salesforce interview questions, with real answers</h2>
+        <p>260+ questions across 16 topics, from Admin and Security to Flow, Apex, LWC, design patterns and Agentforce, each tagged Beginner, Intermediate or Advanced, plus scenario questions, coding exercises and cheat sheets. The kind that actually come up, not textbook definitions. Refreshed monthly.</p>
+      </div>
+      <div class="promo-actions"><a class="btn btn-primary" href="interview-questions.html">Start practicing →</a> <a class="btn btn-ghost" href="playground.html">Try it yourself</a></div>
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="articles">
+    <div class="section-head">
+      <span class="eyebrow">From the notebook</span>
+      <h2>Latest study notes</h2>
+      <p>Short, worked explanations of the concepts that trip people up first — written the way I wished someone had explained them to me.</p>
+    </div>
+
+    <div class="filter-tabs" role="tablist" aria-label="Filter study notes by category">
+      <button class="filter-tab active" data-filter="all">All</button>
+      <button class="filter-tab" data-filter="cat-admin">Admin</button>
+      <button class="filter-tab" data-filter="cat-data-model">Data model</button>
+      <button class="filter-tab" data-filter="cat-security">Security</button>
+      <button class="filter-tab" data-filter="cat-automation">Automation</button>
+      <button class="filter-tab" data-filter="cat-development">Development</button>
+      <button class="filter-tab" data-filter="cat-architecture">Architecture</button>
+    </div>
+
+    <div class="article-grid">
+
+      <a class="article" href="platform-crm-basics.html" data-category="cat-admin">
+        <div class="meta"><span class="tag cat-admin">Admin</span><span class="time">6 min read</span></div>
+        <h3>Objects and fields: the building blocks of Salesforce</h3>
+        <p>Standard vs custom objects, the field types you'll use constantly, and why the schema you choose on day one is hard to undo.</p>
+        <span class="read">Read the note →</span>
+      </a>
+
+      <a class="article" href="security-sharing.html" data-category="cat-security">
+        <div class="meta"><span class="tag cat-security">Security</span><span class="time">8 min read</span></div>
+        <h3>Profiles vs permission sets: when to use which</h3>
+        <p>The two most confused tools in the security model, explained through what each one is actually for.</p>
+        <span class="read">Read the note →</span>
+      </a>
+
+      <a class="article" href="data-model-relationships.html" data-category="cat-data-model">
+        <div class="meta"><span class="tag cat-data-model">Data model</span><span class="time">5 min read</span></div>
+        <h3>Master-detail vs lookup relationships, explained</h3>
+        <p>Cascading deletes, roll-up summaries, and the ownership question that decides which relationship type you need.</p>
+        <span class="read">Read the note →</span>
+      </a>
+
+      <a class="article" href="automation.html" data-category="cat-automation">
+        <div class="meta"><span class="tag cat-automation">Automation</span><span class="time">10 min read</span></div>
+        <h3>Flow Builder 101: your first screen flow</h3>
+        <p>A worked example building a lead-routing screen flow from an empty canvas, decision element by decision element.</p>
+        <span class="read">Read the note →</span>
+      </a>
+
+      <a class="article" href="apex-development.html" data-category="cat-development">
+        <div class="meta"><span class="tag cat-development">Development</span><span class="time">7 min read</span></div>
+        <h3>Understanding governor limits before you hit them</h3>
+        <p>Why Apex fails in bulk when it worked fine in the debugger, and how to write triggers that don't care about record count.</p>
+        <span class="read">Read the note →</span>
+      </a>
+
+      <a class="article" href="security-sharing.html" data-category="cat-security">
+        <div class="meta"><span class="tag cat-security">Security</span><span class="time">6 min read</span></div>
+        <h3>Reading a sharing rule like an engineer</h3>
+        <p>Org-wide defaults set the floor, sharing rules raise it. A mental model for tracing why a user can see a record.</p>
+        <span class="read">Read the note →</span>
+      </a>
+
+      <a class="article" href="platform-crm-basics.html#reports-dashboards" data-category="cat-admin">
+        <div class="meta"><span class="tag cat-admin">Admin</span><span class="time">6 min read</span></div>
+        <h3>Reports and dashboards: the parts nobody explains</h3>
+        <p>Why a report type limits what you can build, and the "running user" setting that makes two people see different numbers on the same dashboard.</p>
+        <span class="read">Read the note →</span>
+      </a>
+
+      <a class="article" href="apex-development.html#lwc" data-category="cat-development">
+        <div class="meta"><span class="tag cat-development">Development</span><span class="time">6 min read</span></div>
+        <h3>Lightning Web Components vs Aura: why the switch happened</h3>
+        <p>What changed under the hood, and why new development has moved almost entirely to LWC.</p>
+        <span class="read">Read the note →</span>
+      </a>
+
+      <a class="article" href="architecture-integration.html#integration-patterns" data-category="cat-architecture">
+        <div class="meta"><span class="tag cat-architecture">Architecture</span><span class="time">7 min read</span></div>
+        <h3>REST vs SOAP: picking the right API for the job</h3>
+        <p>Why most new integrations reach for REST, and the legacy enterprise cases where SOAP still shows up.</p>
+        <span class="read">Read the note →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <hr class="rule"/>
+
+  <section id="subscribe" class="tight">
+    <div class="subscribe-card">
+      <div class="subscribe-copy">
+        <img class="mascot mascot-sm" src="null-bug.svg" alt="" aria-hidden="true"/>
+        <span class="eyebrow">Weekly notes, from Null and me</span>
+        <h2>One study note a week, nothing else</h2>
+        <p>Short, focused, worked examples — no product marketing, no upsells. Unsubscribe whenever.</p>
+      </div>
+      <div>
+        <form class="sub-form" id="subForm" name="subscribe" method="POST">
+          <input type="email" id="subEmail" name="email" placeholder="you@example.com" required aria-label="Email address"/>
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+        <p class="sub-note">Sent Tuesdays. One click to unsubscribe.</p>
+        <p class="sub-confirm" id="subConfirm">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          You're on the list — first note lands Tuesday.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="brand">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="2.5" y="4.5" width="27" height="23" rx="6" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/>
+          <circle cx="7.2" cy="9.2" r="1.15" fill="var(--coral)"/><circle cx="10.6" cy="9.2" r="1.15" fill="var(--gold)"/><circle cx="14" cy="9.2" r="1.15" fill="var(--accent)"/>
+          <path d="M8 15.2L11.6 18.4L8 21.6" stroke="var(--accent)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20.2 13.6L16.6 19.2H20.8L18.2 24.4" stroke="var(--violet)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+          <span class="brand-name">Force<span class="brand-accent">Notes</span><span class="brand-cursor" aria-hidden="true">_</span></span>
+        </div>
+        <p>An independently owned and written study blog covering Salesforce platform fundamentals. Not affiliated with, endorsed by, or sponsored by Salesforce.com.</p>
+        <div class="foot-author">
+          <span class="author-name">Sayed Muneer Mohsin</span>
+          <span class="author-title">Founder &middot; Salesforce Enthusiast</span>
+          <div class="author-links">
+            <a href="https://www.salesforce.com/trailblazer/msayedmuneer" target="_blank" rel="noopener">Trailblazer</a>
+            <a href="https://www.linkedin.com/in/sayed-mohsin-7923a09b/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Study</h4>
+        <a href="#pillars">Core pillars</a>
+        <a href="#data-model">Data model</a>
+        <a href="#roadmap">Roadmap</a>
+      </div>
+      <div class="foot-col">
+        <h4>Read</h4>
+        <a href="#articles">Latest notes</a>
+        <a href="interview-questions.html">Interview prep</a>
+        <a href="playground.html">Try it yourself</a>
+        <a href="trending-archive.html">All trending</a>
+        <a href="#trending">Trending</a>
+        <a href="#subscribe">Subscribe</a>
+      </div>
+      <div class="foot-col">
+        <h4>Tracks</h4>
+        <a href="platform-crm-basics.html">Administrator</a>
+        <a href="automation.html">App Builder</a>
+        <a href="apex-development.html">Developer</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 ForceNotes. Independently written and maintained.</span>
+      <span>"Salesforce" is a trademark of Salesforce, Inc.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="site-config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

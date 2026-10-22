@@ -1,0 +1,28 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="g" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" fill="none" stroke="#1B2230" stroke-width="1"/></pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0B0E14"/>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect x="640" y="120" width="500" height="390" rx="18" fill="#11161F" stroke="#242C3A" stroke-width="2"/>
+  <rect x="640" y="120" width="500" height="52" rx="18" fill="#171E2A"/>
+  <rect x="640" y="150" width="500" height="22" fill="#171E2A"/>
+  <circle cx="672" cy="146" r="7" fill="#FF7B72"/><circle cx="696" cy="146" r="7" fill="#F5C451"/><circle cx="720" cy="146" r="7" fill="#22D3B6"/>
+  <text x="748" y="152" font-family="'Courier New', monospace" font-size="18" fill="#6E7A8C">study-session.soql</text>
+  <text x="672" y="225" font-family="'Courier New', monospace" font-size="22" fill="#A3AFBF"><tspan fill="#22D3B6">&gt;</tspan> <tspan fill="#8B7CFF">SELECT</tspan> Name <tspan fill="#8B7CFF">FROM</tspan> Account</text>
+  <text x="672" y="265" font-family="'Courier New', monospace" font-size="22" fill="#6E7A8C"><tspan fill="#22D3B6">&#10003;</tspan> 3 child relationships</text>
+  <text x="672" y="320" font-family="'Courier New', monospace" font-size="22" fill="#A3AFBF"><tspan fill="#58C4FF">children</tspan>  Contact, Opp, Case</text>
+  <text x="672" y="360" font-family="'Courier New', monospace" font-size="22" fill="#A3AFBF"><tspan fill="#58C4FF">access</tspan>    OWD + Role Hierarchy</text>
+  <text x="672" y="400" font-family="'Courier New', monospace" font-size="22" fill="#A3AFBF"><tspan fill="#58C4FF">practice</tspan>  246 interview Q&amp;As</text>
+  <text x="672" y="455" font-family="'Courier New', monospace" font-size="22" fill="#22D3B6">&gt; <tspan>&#9608;</tspan></text>
+  <g transform="translate(70,150) scale(3.4)">
+    <rect x="2.5" y="4.5" width="27" height="23" rx="6" fill="#171E2A" stroke="#22D3B6" stroke-width="1.5"/>
+    <circle cx="7.2" cy="9.2" r="1.15" fill="#FF7B72"/><circle cx="10.6" cy="9.2" r="1.15" fill="#F5C451"/><circle cx="14" cy="9.2" r="1.15" fill="#22D3B6"/>
+    <path d="M8 15.2L11.6 18.4L8 21.6" stroke="#22D3B6" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20.2 13.6L16.6 19.2H20.8L18.2 24.4" stroke="#8B7CFF" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="70" y="330" font-family="Arial, Helvetica, sans-serif" font-size="74" font-weight="700" fill="#E6EDF3">Force<tspan fill="#22D3B6">Notes</tspan><tspan fill="#22D3B6">_</tspan></text>
+  <text x="70" y="390" font-family="Arial, Helvetica, sans-serif" font-size="29" fill="#A3AFBF">Learn Salesforce object by object,</text>
+  <text x="70" y="430" font-family="Arial, Helvetica, sans-serif" font-size="29" fill="#A3AFBF">not slide by slide.</text>
+  <text x="70" y="500" font-family="'Courier New', monospace" font-size="21" fill="#22D3B6">// elkun477-svg.github.io/forcenotes</text>
+</svg>

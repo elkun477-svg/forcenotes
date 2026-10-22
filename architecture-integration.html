@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ForceNotes — Architecture &amp; integration</title>
+<meta name="description" content="How Salesforce connects to everything else: REST vs SOAP APIs, Data Loader, deployment pipelines, and sandbox strategy, explained simply.">
+<link rel="canonical" href="https://elkun477-svg.github.io/forcenotes/architecture-integration.html">
+<meta property="og:title" content="ForceNotes — Architecture & integration">
+<meta property="og:description" content="How Salesforce connects to everything else: REST vs SOAP APIs, Data Loader, deployment pipelines, and sandbox strategy, explained simply.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://elkun477-svg.github.io/forcenotes/architecture-integration.html">
+<meta property="og:image" content="https://elkun477-svg.github.io/forcenotes/og-image.png">
+<meta property="og:site_name" content="ForceNotes">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ForceNotes — Architecture & integration">
+<meta name="twitter:description" content="How Salesforce connects to everything else: REST vs SOAP APIs, Data Loader, deployment pipelines, and sandbox strategy, explained simply.">
+<meta name="twitter:image" content="https://elkun477-svg.github.io/forcenotes/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Architecture & integration",
+  "description": "How Salesforce connects to everything else: REST vs SOAP APIs, Data Loader, deployment pipelines, and sandbox strategy, explained simply.",
+  "author": {
+    "@type": "Person",
+    "name": "Sayed Muneer Mohsin"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ForceNotes"
+  },
+  "datePublished": "2026-09-19",
+  "mainEntityOfPage": "https://elkun477-svg.github.io/forcenotes/architecture-integration.html"
+}
+</script>
+<meta name="theme-color" content="#0B0E14">
+<script>try{if(localStorage.getItem("fn-theme")==="light"){document.documentElement.setAttribute("data-theme","light");}}catch(e){}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <a class="brand" href="index.html" aria-label="ForceNotes home">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2.5" y="4.5" width="27" height="23" rx="6" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/>
+        <circle cx="7.2" cy="9.2" r="1.15" fill="var(--coral)"/><circle cx="10.6" cy="9.2" r="1.15" fill="var(--gold)"/><circle cx="14" cy="9.2" r="1.15" fill="var(--accent)"/>
+        <path d="M8 15.2L11.6 18.4L8 21.6" stroke="var(--accent)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.2 13.6L16.6 19.2H20.8L18.2 24.4" stroke="var(--violet)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">Force<span class="brand-accent">Notes</span><span class="brand-cursor" aria-hidden="true">_</span></span>
+    </a>
+    <nav class="links" aria-label="Main">
+      <div class="nav-group">
+        <button class="nav-trigger" type="button" aria-expanded="false">Learn<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="index.html#pillars"><strong>Core pillars</strong><span>Six topics, admin to architect</span></a>
+          <a href="index.html#roadmap"><strong>Study roadmap</strong><span>Three stages, in order</span></a>
+          <a href="index.html#data-model"><strong>Data model</strong><span>How records connect</span></a>
+          <a href="design-patterns.html"><strong>Design patterns</strong><span>Apex patterns and SOLID, runnable</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-trigger" type="button" aria-expanded="false">Practice<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="interview-questions.html"><strong>Interview questions</strong><span>260+ Q&amp;As by level, flashcards</span></a>
+          <a href="playground.html"><strong>Try it yourself</strong><span>Run HTML, CSS and JS in your browser</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-trigger" type="button" aria-expanded="false">Read<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-menu">
+          <a href="index.html#articles"><strong>Study notes</strong><span>Short worked explanations</span></a>
+          <a href="trending-archive.html"><strong>Trending</strong><span>What's new in the ecosystem</span></a>
+          <a href="index.html#subscribe"><strong>Subscribe</strong><span>One note a week</span></a>
+        </div>
+      </div>
+    </nav>
+    <div class="nav-actions">
+      <button class="search-toggle" id="searchToggle" aria-label="Open search">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="5.2" stroke="currentColor" stroke-width="1.4"/><line x1="12" y1="12" x2="16" y2="16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </button>
+      <button class="search-toggle theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="3.4" stroke="currentColor" stroke-width="1.4"/><path d="M9 1.8V3.4M9 14.6V16.2M1.8 9H3.4M14.6 9H16.2M3.9 3.9L5 5M13 13L14.1 14.1M3.9 14.1L5 13M13 5L14.1 3.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M14.5 11.2A6 6 0 0 1 6.8 3.5A6 6 0 1 0 14.5 11.2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      </button>
+      <a class="btn btn-primary nav-cta" href="index.html#pillars">Start learning</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4.5H16M2 9H16M2 13.5H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div id="mobile-menu">
+      <span class="mobile-group">Learn</span>
+      <a href="index.html#pillars">Core pillars</a>
+      <a href="index.html#roadmap">Study roadmap</a>
+      <a href="index.html#data-model">Data model</a>
+      <a href="design-patterns.html">Design patterns</a>
+      <span class="mobile-group">Practice</span>
+      <a href="interview-questions.html">Interview questions</a>
+      <a href="playground.html">Try it yourself</a>
+      <span class="mobile-group">Read</span>
+      <a href="index.html#articles">Study notes</a>
+      <a href="trending-archive.html">Trending</a>
+      <a href="index.html#subscribe">Subscribe</a>
+    </div>
+  </div>
+</header>
+<div class="search-overlay" id="searchOverlay" hidden>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search ForceNotes..." aria-label="Search"/>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+
+<div class="reading-progress"><div class="reading-progress-fill" id="readingProgressFill"></div></div>
+<div class="wrap">
+
+  <div class="breadcrumb"><a href="index.html">ForceNotes</a> <span class="crumb-sep">›</span> Architecture &amp; integration</div>
+
+  <section class="topic-hero">
+    <span class="eyebrow">Pillar 06 &middot; Developer &amp; architect</span>
+    <h1>Architecture &amp; integration</h1>
+    <p class="lede">Salesforce rarely lives alone. It syncs with an ERP, feeds a data warehouse, gets loaded from spreadsheets, and moves through a chain of sandboxes on its way to production — and each of those is its own discipline.</p>
+  </section>
+
+  <img class="topic-hero-img" src="architecture-integration-cover.svg" alt="A server rack with glowing green network cables, representing infrastructure and integration"/>
+
+  <div class="topic-grid">
+    <div class="prose">
+
+      <h2 id="integration-patterns"><svg class="h-icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M5 12C3.3 12 2 10.7 2 9C2 7.5 3.1 6.3 4.5 6.1C4.9 4 6.7 2.5 9 2.5C11.5 2.5 13.5 4.4 13.7 6.9C15 7.2 16 8.4 16 9.8C16 11.6 14.6 13 12.8 13H5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>REST vs SOAP APIs</h2>
+      <p>Salesforce exposes its data through both a <strong>REST API</strong> (lightweight, JSON-based, the default choice for modern web and mobile integrations) and a <strong>SOAP API</strong> (XML-based, older, still common in enterprise middleware that predates REST's dominance). For high-volume data movement, the <strong>Bulk API</strong> is built specifically for loading or extracting millions of records asynchronously, without burning through the same limits as ordinary API calls.</p>
+
+      <h2 id="data-loader"><svg class="h-icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 3V11M9 11L6 8M9 11L12 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 14.5H15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Data Loader and ETL</h2>
+      <p><strong>Data Loader</strong> is Salesforce's own desktop tool for bulk insert, update, upsert, and delete operations against any object, driven from a CSV file. For recurring, scheduled, or more complex data movement, it's more common to reach for a dedicated ETL (extract-transform-load) tool that connects to the Bulk API on a schedule.</p>
+
+      <h2 id="change-management"><svg class="h-icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 2C11 3.2 12.5 5.7 12.5 8.6C12.5 10.6 12 12.3 11 13.5L9 16L7 13.5C6 12.3 5.5 10.6 5.5 8.6C5.5 5.7 7 3.2 9 2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="9" cy="8" r="1.3" stroke="currentColor" stroke-width="1.2"/></svg>Deployment: change sets vs CI/CD</h2>
+      <p>Moving configuration from a sandbox to production is called a <strong>deployment</strong>, and it can happen two ways:</p>
+      <ul>
+        <li><strong>Change Sets</strong> — a point-and-click, in-browser way to select components and send them between two connected orgs. Simple, but manual and hard to version.</li>
+        <li><strong>Salesforce CLI + version control</strong> — metadata is tracked as source in a git repository, and deployments run through a CI/CD pipeline. This is the standard for any team working in the same org, since it gives you history, code review, and repeatability that Change Sets can't.</li>
+      </ul>
+
+      <h2 id="multi-org"><svg class="h-icon" width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="3" y="9.5" width="12" height="5.5" rx="1.3" stroke="currentColor" stroke-width="1.3"/><rect x="4.5" y="5.3" width="9" height="5.5" rx="1.3" stroke="currentColor" stroke-width="1.3"/><rect x="6" y="1.5" width="6" height="5" rx="1.1" stroke="currentColor" stroke-width="1.2"/></svg>Multi-org strategy</h2>
+      <p>Production is never edited directly. Work happens in <strong>sandboxes</strong> — copies of an org used for building and testing — which come in a few sizes: <strong>Developer</strong> and <strong>Developer Pro</strong> (no production data, for building), <strong>Partial Copy</strong> (a sample of production data, for testing), and <strong>Full Copy</strong> (a complete mirror, for final staging). A healthy release process moves changes through this chain in order, never straight from a laptop to production.</p>
+      <div class="diagram-shell inline-diagram">
+        <img src="sandbox-pipeline.png" alt="Diagram showing the sandbox pipeline in order: Developer, then Developer Pro, then Partial Copy, then Full Copy, then Production" loading="lazy"/>
+      </div>
+
+    </div>
+
+    <aside class="quick-ref">
+      <nav class="toc-card" aria-label="On this page">
+        <h4>On this page</h4>
+        <a href="#integration-patterns">REST vs SOAP APIs</a>
+        <a href="#data-loader">Data Loader and ETL</a>
+        <a href="#change-management">Deployment: change sets vs CI/CD</a>
+        <a href="#multi-org">Multi-org strategy</a>
+      </nav>
+      <div class="record-card">
+      <div class="record-body">
+        <h4>Sandbox types</h4>
+        <table class="ref-table">
+          <tr><th>Type</th><th>Contains</th></tr>
+          <tr><td>Developer</td><td>Metadata only</td></tr>
+          <tr><td>Developer Pro</td><td>Metadata, more storage</td></tr>
+          <tr><td>Partial Copy</td><td>Metadata + a data sample</td></tr>
+          <tr><td>Full Copy</td><td>Full mirror of production</td></tr>
+        </table>
+      </div>
+      </div>
+    </aside>
+  </div>
+
+  <nav class="pillar-nav">
+    <a href="apex-development.html">← Apex &amp; development</a>
+    <a class="next" href="index.html">Back to ForceNotes →</a>
+  </nav>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="brand">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="2.5" y="4.5" width="27" height="23" rx="6" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/>
+          <circle cx="7.2" cy="9.2" r="1.15" fill="var(--coral)"/><circle cx="10.6" cy="9.2" r="1.15" fill="var(--gold)"/><circle cx="14" cy="9.2" r="1.15" fill="var(--accent)"/>
+          <path d="M8 15.2L11.6 18.4L8 21.6" stroke="var(--accent)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20.2 13.6L16.6 19.2H20.8L18.2 24.4" stroke="var(--violet)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+          <span class="brand-name">Force<span class="brand-accent">Notes</span><span class="brand-cursor" aria-hidden="true">_</span></span>
+        </div>
+        <p>An independently owned and written study blog covering Salesforce platform fundamentals. Not affiliated with, endorsed by, or sponsored by Salesforce.com.</p>
+        <div class="foot-author">
+          <span class="author-name">Sayed Muneer Mohsin</span>
+          <span class="author-title">Founder &middot; Salesforce Enthusiast</span>
+          <div class="author-links">
+            <a href="https://www.salesforce.com/trailblazer/msayedmuneer" target="_blank" rel="noopener">Trailblazer</a>
+            <a href="https://www.linkedin.com/in/sayed-mohsin-7923a09b/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Study</h4>
+        <a href="index.html#pillars">Core pillars</a>
+        <a href="index.html#data-model">Data model</a>
+        <a href="index.html#roadmap">Roadmap</a>
+      </div>
+      <div class="foot-col">
+        <h4>Read</h4>
+        <a href="index.html#articles">Latest notes</a>
+        <a href="interview-questions.html">Interview prep</a>
+        <a href="playground.html">Try it yourself</a>
+        <a href="trending-archive.html">All trending</a>
+        <a href="index.html#subscribe">Subscribe</a>
+      </div>
+      <div class="foot-col">
+        <h4>Tracks</h4>
+        <a href="platform-crm-basics.html">Administrator</a>
+        <a href="automation.html">App Builder</a>
+        <a href="apex-development.html">Developer</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 ForceNotes. Independently written and maintained.</span>
+      <span>"Salesforce" is a trademark of Salesforce, Inc.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="site-config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

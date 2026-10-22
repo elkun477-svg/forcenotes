@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://elkun477-svg.github.io/forcenotes/sitemap.xml

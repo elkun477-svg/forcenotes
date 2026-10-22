@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Platform &amp; CRM basics">
+  <defs>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" fill="none" stroke="#19202C" stroke-width="1"/></pattern>
+    <radialGradient id="glow" cx="78%" cy="45%" r="45%"><stop offset="0" stop-color="#22D3B6" stop-opacity=".22"/><stop offset="1" stop-color="#22D3B6" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="675" fill="#0B0E14"/>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+  <rect width="1200" height="675" fill="url(#glow)"/>
+  <text x="72" y="277" font-family="'JetBrains Mono','Courier New',monospace" font-size="22" fill="#22D3B6">// pillar 01</text>
+  <text font-family="'Space Grotesk','Segoe UI',Arial,sans-serif" font-size="52" font-weight="700" fill="#E6EDF3" letter-spacing="-1">
+    <tspan x="72" y="353">Platform &amp; CRM basics</tspan>
+  </text>
+  <rect x="72" y="383" width="72" height="5" rx="2.5" fill="#22D3B6"/>
+  <g transform="translate(690 223)">
+    <rect width="440" height="228" rx="16" fill="#11161F" stroke="#242C3A" stroke-width="2"/>
+    <path d="M0 16A16 16 0 0 1 16 0H424A16 16 0 0 1 440 16V46H0Z" fill="#171E2A"/>
+    <circle cx="26" cy="23" r="6" fill="#FF7B72"/><circle cx="46" cy="23" r="6" fill="#F5C451"/><circle cx="66" cy="23" r="6" fill="#22D3B6"/>
+    <text font-family="'JetBrains Mono','Courier New',monospace" font-size="19" xml:space="preserve">
+      <tspan x="26" y="88"><tspan fill="#6E7A8C">// every org starts here</tspan></tspan>
+      <tspan x="26" y="122"><tspan fill="#B392F0">SELECT</tspan><tspan fill="#A3AFBF"> Name </tspan><tspan fill="#B392F0">FROM</tspan><tspan fill="#A3AFBF"> Account</tspan></tspan>
+      <tspan x="26" y="156"><tspan fill="#22D3B6">&gt; objects, fields, records</tspan></tspan>
+      <tspan x="26" y="190"><tspan fill="#22D3B6">&gt; setup without getting lost</tspan></tspan>
+    </text>
+  </g>
+  <g transform="translate(72 560)">
+    <rect x="0" y="0" width="40" height="34" rx="9" fill="#171E2A" stroke="#22D3B6" stroke-width="2"/>
+    <path d="M10 11L16 17L10 23" stroke="#22D3B6" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M28 8L22.5 17.5H29L25.5 26" stroke="#8B7CFF" stroke-width="2.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="54" y="25" font-family="'Space Grotesk','Segoe UI',Arial,sans-serif" font-size="22" font-weight="700" fill="#E6EDF3">Force<tspan fill="#22D3B6">Notes</tspan></text>
+  </g>
+</svg>
