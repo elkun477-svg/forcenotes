@@ -90,6 +90,7 @@ var SEARCH_INDEX = [
   {title:"Salesforce Pulls the Plug on Two Integrations Over Suspicious Token Use", page:"Trending", url:"trending-23.html"},
   {title:"Koa Decisions Is Salesforce's Speedy Model for Quick AI Choices", page:"Trending", url:"trending-24.html"},
   {title:"Salesforce Built AI Agents That Do AI Research. Here's What They Found", page:"Trending", url:"trending-25.html"},
+  {title:"Salesforce Will Bill Flex Credits When AI Agents Call Your Org", page:"Trending", url:"trending-26.html"},
   {title:"Platform & CRM basics", page:"Pillar", url:"platform-crm-basics.html"},
   {title:"Data model & relationships", page:"Pillar", url:"data-model-relationships.html"},
   {title:"Security & sharing model", page:"Pillar", url:"security-sharing.html"},
