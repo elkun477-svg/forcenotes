@@ -77,8 +77,11 @@
     }
     return shuffle(chosen).slice(0, n);
   }
+  /* a bank smaller than the real exam gives a shorter mock with a proportionally shorter timer */
+  function mockSize(cert) { return Math.min(cert.exam.questions, cert.questions.length); }
+  function mockMinutes(cert) { return Math.round(cert.exam.minutes * mockSize(cert) / cert.exam.questions); }
   function pickExam(cert) {
-    var total = cert.exam.questions, chosen = [], used = {};
+    var total = mockSize(cert), chosen = [], used = {};
     var targets = cert.domains.map(function (d) { return { d: d, n: Math.floor(d.pct / 100 * total) }; });
     var sum = targets.reduce(function (s, t) { return s + t.n; }, 0);
     var byRem = cert.domains.map(function (d, i) { return { i: i, r: d.pct / 100 * total - targets[i].n }; }).sort(function (a, b) { return b.r - a.r; });
@@ -183,7 +186,7 @@
     var missed = cert.questions.filter(function (q) { var r = cs.q[q.id]; return r && r.l === false; });
     var modes = el('div', 'cert-modes');
     modes.appendChild(modeCard('Quick quiz', '10 questions mixed across the exam sections. Unseen and previously missed questions come first. You see the answer after each one.', 'Start quick quiz', function () { startSession(cert, 'quick', pickMixed(cert, 10)); }));
-    modes.appendChild(modeCard('Mock exam', Math.min(cert.exam.questions, cert.questions.length) + ' questions in the real exam proportions, ' + cert.exam.minutes + ' minutes, no answers until you finish. Flag questions and review them like the real exam.', 'Start mock exam', function () { startSession(cert, 'exam', pickExam(cert)); }, true));
+    modes.appendChild(modeCard('Mock exam', mockSize(cert) + ' questions in the real exam proportions, ' + mockMinutes(cert) + ' minutes' + (mockSize(cert) < cert.exam.questions ? ' (scaled down from the real ' + cert.exam.questions + ' questions and ' + cert.exam.minutes + ' minutes)' : '') + ', no answers until you finish. Flag questions and review them like the real exam.', 'Start mock exam', function () { startSession(cert, 'exam', pickExam(cert)); }, true));
     modes.appendChild(modeCard('Review missed', missed.length ? missed.length + ' question' + (missed.length === 1 ? '' : 's') + ' you got wrong last time.' : 'Questions you get wrong will collect here for a second try.', 'Review missed', function () { startSession(cert, 'review', shuffle(missed)); }, false, !missed.length));
     root.appendChild(modes);
 
@@ -260,7 +263,7 @@
     if (!qs.length) return;
     stopTimer();
     session = { cert: cert.id, mode: mode, items: makeItems(qs), idx: 0, startedAt: Date.now(), done: false };
-    if (mode === 'exam') { session.endsAt = Date.now() + cert.exam.minutes * 60000; saveExam(); startTimer(); }
+    if (mode === 'exam') { session.endsAt = Date.now() + mockMinutes(cert) * 60000; saveExam(); startTimer(); }
     viewQuestion();
   }
   function resumeExam(s) {
@@ -430,7 +433,7 @@
     if (timeUp) head.appendChild(el('p', 'cert-note', 'Time is up. Your answers were submitted automatically.'));
     head.appendChild(el('p', 'cert-result-label', exam ? 'Mock exam result' : 'Session result'));
     head.appendChild(el('p', 'cert-result-score', score + '%'));
-    head.appendChild(el('p', '', right + ' of ' + total + ' correct' + (exam ? ', time used ' + fmtTime(secs) + ' of ' + cert.exam.minutes + ':00' : '')));
+    head.appendChild(el('p', '', right + ' of ' + total + ' correct' + (exam ? ', time used ' + fmtTime(secs) + ' of ' + mockMinutes(cert) + ':00' : '')));
     if (exam) {
       var pass = score >= cert.exam.passing;
       head.appendChild(el('p', 'cert-verdict ' + (pass ? 'cert-pass' : 'cert-fail'), pass ? 'Above the ' + cert.exam.passing + '% passing score' : 'Below the ' + cert.exam.passing + '% passing score'));

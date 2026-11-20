@@ -96,6 +96,8 @@ var SEARCH_INDEX = [
   {title:"Salesforce Built AI Agents That Do AI Research. Here's What They Found", page:"Trending", url:"trending-25.html"},
   {title:"Salesforce Will Bill Flex Credits When AI Agents Call Your Org", page:"Trending", url:"trending-26.html"},
   {title:"Salesforce Is Buying Listen Labs to Put AI Customer Researchers in the CRM", page:"Trending", url:"trending-27.html"},
+  {title:"Builder Central Is in Beta: Here's How Admins Can Switch It On", page:"Trending", url:"trending-28.html"},
+  {title:"Winter '27 Makes the Headless Toolkit the Big Story for Developers", page:"Trending", url:"trending-29.html"},
   {title:"Platform & CRM basics", page:"Pillar", url:"platform-crm-basics.html"},
   {title:"Data model & relationships", page:"Pillar", url:"data-model-relationships.html"},
   {title:"Security & sharing model", page:"Pillar", url:"security-sharing.html"},
